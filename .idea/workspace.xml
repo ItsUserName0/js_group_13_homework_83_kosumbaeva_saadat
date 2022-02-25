@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Created API for &quot;artist&quot; entity." />
+    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Created basic app structure.">
+      <change afterPath="$PROJECT_DIR$/front/src/app/models/album.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/app/models/artist.model.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,14 +23,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.18.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.18.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../news" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/front/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -39,6 +44,7 @@
       <option name="presentableId" value="Default" />
       <updated>1645703157767</updated>
       <workItem from="1645703159118" duration="3981000" />
+      <workItem from="1645757461251" duration="10927000" />
     </task>
     <task id="LOCAL-00001" summary="API initial commit.">
       <created>1645703319810</created>
@@ -54,7 +60,28 @@
       <option name="project" value="LOCAL" />
       <updated>1645707079667</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created API for &quot;album&quot; entity.">
+      <created>1645764602155</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1645764602155</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Frontend initial commit.">
+      <created>1645765512011</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1645765512011</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created basic app structure.">
+      <created>1645769657564</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1645769657564</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -74,7 +101,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="API initial commit." />
     <MESSAGE value="Created API for &quot;artist&quot; entity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created API for &quot;artist&quot; entity." />
+    <MESSAGE value="Created API for &quot;album&quot; entity." />
+    <MESSAGE value="Frontend initial commit." />
+    <MESSAGE value="Created basic app structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created basic app structure." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

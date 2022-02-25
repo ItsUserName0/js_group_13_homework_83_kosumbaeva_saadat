@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const config = require('./config');
 const artists = require('./app/artists');
 const albums = require('./app/albums');
@@ -7,6 +8,7 @@ const app = express();
 
 const port = 8000;
 
+app.use(cors({origin: 'http://localhost:4200'}));
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/artists', artists);

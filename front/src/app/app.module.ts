@@ -12,6 +12,11 @@ import { AlbumsComponent } from './pages/albums/albums.component';
 import { ArtistComponent } from './ui/artist/artist.component';
 import { AlbumComponent } from './ui/album/album.component';
 import { MatCardModule } from '@angular/material/card';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { artistsReducer } from './store/artists.reducer';
+import { ArtistsEffects } from './store/artists.effects';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,9 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     MatToolbarModule,
     MatCardModule,
+    StoreModule.forRoot({artists: artistsReducer}, {}),
+    EffectsModule.forRoot([ArtistsEffects]),
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

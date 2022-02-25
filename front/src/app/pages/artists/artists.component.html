@@ -1,7 +1,12 @@
-<div fxLayout="row wrap" class="wrap">
-  <app-artist></app-artist>
-  <app-artist></app-artist>
-  <app-artist></app-artist>
-  <app-artist></app-artist>
+<div class="error" *ngIf="error | async">
+  {{ error | async }}
 </div>
+
+<mat-progress-spinner *ngIf="loading | async else artistsArea" mode="indeterminate"></mat-progress-spinner>
+
+<ng-template #artistsArea>
+  <div fxLayout="row wrap" class="wrap">
+    <app-artist *ngFor="let a of artists | async" [artist]="a"></app-artist>
+  </div>
+</ng-template>
 

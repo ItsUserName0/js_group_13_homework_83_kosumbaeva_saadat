@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Artist } from '../../models/artist.model';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-artist',
@@ -6,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./artist.component.sass']
 })
 export class ArtistComponent implements OnInit {
+  @Input() artist!: Artist;
 
-  constructor() { }
+  apiUrl = environment.apiUrl;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
