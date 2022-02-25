@@ -17,8 +17,8 @@ export class ArtistsComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.artists = this.store.select(state => state.artists.artists);
-    this.loading = this.store.select(state => state.artists.fetchLoading);
-    this.error = this.store.select(state => state.artists.fetchError);
+    this.loading = this.store.select(state => state.artists.fetchArtistLoading);
+    this.error = this.store.select(state => state.artists.fetchArtistError);
   }
 
   ngOnInit(): void {

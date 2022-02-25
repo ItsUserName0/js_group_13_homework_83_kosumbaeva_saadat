@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiArtistData, Artist } from '../models/artist.model';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs';
+import { Album, ApiAlbumData } from '../models/album.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,16 @@ export class ArtistsService {
       map(response => {
         return response.map(artistData => {
           return new Artist(artistData._id, artistData.title, artistData.description, artistData.image);
+        });
+      })
+    );
+  }
+
+  fetchAlbums() {
+    return this.http.get<ApiAlbumData[]>(environment.apiUrl + '/albums').pipe(
+      map(response => {
+        return response.map(albumData => {
+          return new Album(albumData._id, albumData.title, albumData.artist, new Date(albumData.release), albumData.image);
         });
       })
     );

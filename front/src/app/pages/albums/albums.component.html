@@ -1,7 +1,13 @@
-<div class="wrap" fxLayout="row wrap">
-  <app-album></app-album>
-  <app-album></app-album>
-  <app-album></app-album>
-  <app-album></app-album>
+<div class="error" *ngIf="error | async">
+  {{ error | async }}
 </div>
+
+<mat-progress-spinner *ngIf="loading | async else albumsArea"></mat-progress-spinner>
+
+<ng-template #albumsArea>
+  <div class="wrap" fxLayout="row wrap">
+    <app-album *ngFor="let a of albums | async" [album]="a"></app-album>
+  </div>
+</ng-template>
+
 
