@@ -5,11 +5,12 @@ import { AlbumsComponent } from './pages/albums/albums.component';
 
 const routes: Routes = [
   {path: '', component: ArtistsComponent},
-  {path: 'artist/albums', component: AlbumsComponent},
+  {path: 'artist/albums/:id', component: AlbumsComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -2,3 +2,9 @@
 node_modules
 public/uploads/*
 !public/uploads/.gitkeep
+!public/uploads/billie.jpg
+!public/uploads/billie_album.jpg
+!public/uploads/maneskin.jpeg
+!public/uploads/maneskin_album.jpg
+!public/uploads/stromae.jpg
+!public/uploads/stromae_album.jpg

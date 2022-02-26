@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-content fxLayout="column">
     <img [src]="apiUrl + '/uploads/' + album.image" [alt]="album.title" *ngIf="album.image"/>
-    <p>{{ album.title }}</p>
-    <p *ngIf="album.release">{{ album.release.getFullYear() }}</p>
+    <mat-card-title>{{ album.title }}</mat-card-title>
+    <p *ngIf="album.release"><strong>Release: </strong>{{ album.release.getFullYear() }}</p>
   </mat-card-content>
 </mat-card>

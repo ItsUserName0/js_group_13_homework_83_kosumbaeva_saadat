@@ -23,8 +23,8 @@ export class ArtistsService {
     );
   }
 
-  fetchAlbums() {
-    return this.http.get<ApiAlbumData[]>(environment.apiUrl + '/albums').pipe(
+  fetchAlbums(id: string) {
+    return this.http.get<ApiAlbumData[]>(environment.apiUrl + '/albums' + '/?artist=' + id).pipe(
       map(response => {
         return response.map(albumData => {
           return new Album(albumData._id, albumData.title, albumData.artist, new Date(albumData.release), albumData.image);

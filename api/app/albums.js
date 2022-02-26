@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { nanoid } = require('nanoid');
+const {nanoid} = require('nanoid');
 const path = require('path');
 const config = require('../config');
 const Album = require('../models/Album');
@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
       const albums = await Album.find({artist: req.query.artist});
       return res.send(albums);
     }
-    const albums = await Album.find();
+    const albums = await Album.find().populate("artist");
     return res.send(albums);
   } catch (e) {
     next(e);

@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { ArtistsState } from './types';
 import {
   fetchAlbumsFailure,
+  fetchAlbumsRequest,
   fetchAlbumsSuccess,
   fetchArtistsFailure,
   fetchArtistsRequest,
@@ -26,7 +27,7 @@ export const artistsReducer = createReducer(
   on(fetchArtistsFailure, (state, {error}) => {
     return {...state, fetchArtistLoading: false, fetchArtistError: error};
   }),
-  on(fetchArtistsRequest, state => ({...state, fetchAlbumsLoading: true})),
+  on(fetchAlbumsRequest, state => ({...state, fetchAlbumsLoading: true})),
   on(fetchAlbumsSuccess, (state, {albums}) => {
     return {...state, fetchAlbumsLoading: false, albums};
   }),
