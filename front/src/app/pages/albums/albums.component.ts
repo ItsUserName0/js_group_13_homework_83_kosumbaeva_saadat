@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Album } from '../../models/album.model';
@@ -11,11 +11,12 @@ import { fetchAlbumsRequest } from '../../store/artists.actions';
   templateUrl: './albums.component.html',
   styleUrls: ['./albums.component.sass']
 })
-export class AlbumsComponent implements OnInit {
+export class AlbumsComponent implements OnInit, OnDestroy {
   albums: Observable<Album[]>;
   loading: Observable<boolean>
   error: Observable<null | string>;
-  id = '';
+  artistChangeSubscription!: Subscription;
+  artist = '';
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.albums = this.store.select(state => state.artists.albums);
@@ -25,9 +26,16 @@ export class AlbumsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.store.dispatch(fetchAlbumsRequest({id: this.id}));
-    })
+      const id = <string>params['id'];
+      this.store.dispatch(fetchAlbumsRequest({id}));
+    });
+    this.artistChangeSubscription = this.albums.subscribe(albums => {
+      this.artist = albums[0].artist.title;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.artistChangeSubscription.unsubscribe();
   }
 
 }

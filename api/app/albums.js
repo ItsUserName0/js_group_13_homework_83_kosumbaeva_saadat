@@ -4,6 +4,7 @@ const {nanoid} = require('nanoid');
 const path = require('path');
 const config = require('../config');
 const Album = require('../models/Album');
+const Artist = require('../models/Artist');
 
 const router = express.Router();
 
@@ -21,10 +22,10 @@ const upload = multer({storage});
 router.get('/', async (req, res, next) => {
   try {
     if (req.query.artist) {
-      const albums = await Album.find({artist: req.query.artist});
+      const albums = await Album.find({artist: req.query.artist}).populate("artist", "title");
       return res.send(albums);
     }
-    const albums = await Album.find().populate("artist");
+    const albums = await Album.find();
     return res.send(albums);
   } catch (e) {
     next(e);
@@ -33,8 +34,22 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const albums = await Album.find({_id: req.params.id});
+    const albums = await Album.find({_id: req.params.id}).populate("artist");
     return res.send(albums);
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get('/withArtist/:id', async (req, res, next) => {
+  try {
+    const [artist] = await Artist.find({_id: req.params.id});
+    const albums = await Album.find({artist: req.params.id});
+    const albumsWithArtist = [{
+      artist: artist,
+      albums: albums,
+    }];
+    res.send(albumsWithArtist);
   } catch (e) {
     next(e);
   }
