@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const AlbumData = new Schema({
+const TrackSchema = new Schema({
     title: {
       type: String,
       required: true,
     },
-    artist: {
+    album: {
       type: Schema.Types.ObjectId,
-      ref: 'Artist',
+      ref: 'Album',
+    },
+    duration: {
+      type: String,
       required: true,
     },
-    release: Date,
-    image: String,
   },
   {versionKey: false}
 );
 
-const Album = mongoose.model('Album', AlbumData);
+const Track = mongoose.model('Track', TrackSchema);
 
-module.exports = Album;
+module.exports = Track;

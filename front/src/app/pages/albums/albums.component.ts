@@ -30,7 +30,8 @@ export class AlbumsComponent implements OnInit, OnDestroy {
       this.store.dispatch(fetchAlbumsRequest({id}));
     });
     this.artistChangeSubscription = this.albums.subscribe(albums => {
-      this.artist = albums[0].artist.title;
+      const album = albums[0];
+      this.artist = album.artist.title;
     });
   }
 
