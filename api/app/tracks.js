@@ -1,10 +1,16 @@
 const express = require('express');
 const Track = require('../models/Track');
+const Album = require('../models/Album');
 
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
+    if (req.query.artistId) {
+      const albums = await Album.find({artist: req.query.artistId});
+      const tracks = await Track.find({album: albums});
+      return res.send(tracks);
+    }
     if (req.query.album) {
       const tracks = await Track.find({album: req.query.album});
       return res.send(tracks);
@@ -15,6 +21,24 @@ router.get('/', async (req, res, next) => {
     next(e);
   }
 });
+
+router.get('/byAlbum/:albumId', async (req, res, next) => {
+  try {
+    const albums = await Album.find({_id: req.params.albumId}).populate('artist');
+    if (albums.length === 0) {
+      return res.status(422).send({error: 'No such album!'});
+    }
+    const tracks = await Track.find({album: albums});
+    const responseData = {
+      artist: albums[0].artist,
+      album: albums[0],
+      tracks: tracks,
+    };
+    return res.send(responseData);
+  } catch (e) {
+    next(e);
+  }
+})
 
 router.post('/', async (req, res, next) => {
   try {

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Implemented an additional task.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/app/pages/albums/albums.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/pages/albums/albums.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/app/pages/albums/albums.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/pages/albums/albums.component.ts" afterDir="false" />
-    </list>
+    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Created API for &quot;trackHistory&quot; entity." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +26,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.18.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.18.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../shop-js13" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/front/node_modules/typescript/lib" />
@@ -51,6 +47,7 @@
       <workItem from="1645947365607" duration="5953000" />
       <workItem from="1646046662629" duration="8637000" />
       <workItem from="1646132134679" duration="2680000" />
+      <workItem from="1646317639697" duration="11415000" />
     </task>
     <task id="LOCAL-00001" summary="API initial commit.">
       <created>1645703319810</created>
@@ -115,7 +112,28 @@
       <option name="project" value="LOCAL" />
       <updated>1645879751395</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Created API for &quot;track&quot; entity.">
+      <created>1646320591884</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1646320591884</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Created API for &quot;user&quot; entity.">
+      <created>1646325501611</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1646325501611</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Created API for &quot;trackHistory&quot; entity.">
+      <created>1646329012508</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1646329012508</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,7 +160,10 @@
     <MESSAGE value="Implemented the display of the list of albums." />
     <MESSAGE value="Added fixture data." />
     <MESSAGE value="Implemented an additional task." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented an additional task." />
+    <MESSAGE value="Created API for &quot;track&quot; entity." />
+    <MESSAGE value="Created API for &quot;user&quot; entity." />
+    <MESSAGE value="Created API for &quot;trackHistory&quot; entity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created API for &quot;trackHistory&quot; entity." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
