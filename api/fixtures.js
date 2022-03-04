@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
+const {nanoid} = require('nanoid');
 const config = require('./config');
 const Artist = require('./models/Artist');
 const Album = require('./models/Album');
+const Track = require('./models/Track');
+const User = require('./models/User');
+const TrackHistory = require('./models/TrackHistory');
 
 const run = async () => {
   await mongoose.connect(config.mongo.db, config.mongo.options);
@@ -27,10 +31,10 @@ const run = async () => {
       title: 'Maneskin',
       image: 'maneskin.jpeg',
       description: 'Måneskin (Italian: [ˈmɔːneskin], Danish for \'moonlight\') is an Italian rock band formed in Rome in 2016. The band is composed of vocalist Damiano David, bassist Victoria De Angelis, guitarist Thomas Raggi, and drummer Ethan Torchio.',
-    }
+    },
   );
 
-  await Album.create(
+  const [DontSmileAtMe, RacineCarree, TeatroDira] = await Album.create(
     {
       artist: Billie,
       title: 'Dont smile at me',
@@ -48,7 +52,58 @@ const run = async () => {
       title: 'Teatro d\'ira - Vol. 1',
       release: '2021',
       image: 'maneskin_album.jpg',
-    }
+    },
+  );
+
+  const [OceanEyes, TousLesMemes, Coraline] = await Track.create(
+    {
+      title: 'Ocean eyes',
+      album: DontSmileAtMe,
+      duration: '3:20',
+    },
+    {
+      title: 'Tous les memes',
+      album: RacineCarree,
+      duration: '3:37',
+    },
+    {
+      title: 'Coraline',
+      album: TeatroDira,
+      duration: '4:58',
+    },
+  );
+
+  const [User1, User2, User3] = await User.create(
+    {
+      email: 'user1@test.com',
+      password: '123',
+      token: nanoid(),
+    },
+    {
+      email: 'user2@test.com',
+      password: '123',
+      token: nanoid(),
+    },
+    {
+      email: 'user3@test.com',
+      password: '123',
+      token: nanoid(),
+    },
+  );
+
+  await TrackHistory.create(
+    {
+      user: User1,
+      track: OceanEyes,
+    },
+    {
+      user: User2,
+      track: TousLesMemes,
+    },
+    {
+      user: User3,
+      track: Coraline,
+    },
   );
 
   await mongoose.connection.close();
