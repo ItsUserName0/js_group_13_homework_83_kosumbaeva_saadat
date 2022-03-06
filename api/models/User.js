@@ -24,6 +24,14 @@ const UserSchema = new Schema({
     displayName: {
       type: String,
       required: true,
+      unique: true,
+      validate: {
+        validator: async value => {
+          const user = await User.findOne({displayName: value});
+          if (user) return false;
+        },
+        message: 'A user with this name already exists!'
+      }
     },
     token: {
       type: String,

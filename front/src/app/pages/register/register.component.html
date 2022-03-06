@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card class="register-form">
+    <mat-card-title>Register</mat-card-title>
+    <mat-card-content>
+      <form #f="ngForm" autocomplete="off" fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            type="email" name="email" autocomplete="username"
+            email required matInput ngModel #email="ngModel"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Display name</mat-label>
+          <input
+            type="text" name="displayName"
+            required matInput ngModel #displayName="ngModel"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            type="password" name="password"
+            required matInput ngModel #password="ngModel"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Repeat password</mat-label>
+          <input
+            type="password" name="password"
+            required matInput ngModel #password="ngModel"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Avatar</mat-label>
+          <app-file-input name="avatar" ngModel></app-file-input>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Send</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -17,6 +17,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { artistsReducer } from './store/artists.reducer';
 import { ArtistsEffects } from './store/artists.effects';
+import { RegisterComponent } from './pages/register/register.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FileInputComponent } from './ui/file-input/file-input.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,9 @@ import { ArtistsEffects } from './store/artists.effects';
     ArtistsComponent,
     AlbumsComponent,
     ArtistComponent,
-    AlbumComponent
+    AlbumComponent,
+    RegisterComponent,
+    FileInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,11 +40,15 @@ import { ArtistsEffects } from './store/artists.effects';
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
+    FormsModule,
     MatToolbarModule,
     MatCardModule,
     StoreModule.forRoot({artists: artistsReducer}, {}),
     EffectsModule.forRoot([ArtistsEffects]),
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
