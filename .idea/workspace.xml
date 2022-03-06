@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Created API for &quot;trackHistory&quot; entity." />
+    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Improved the &quot;user&quot; model in the API." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +48,9 @@
       <workItem from="1646046662629" duration="8637000" />
       <workItem from="1646132134679" duration="2680000" />
       <workItem from="1646317639697" duration="11415000" />
+      <workItem from="1646375492623" duration="8424000" />
+      <workItem from="1646597307960" duration="4485000" />
+      <workItem from="1646602001868" duration="603000" />
     </task>
     <task id="LOCAL-00001" summary="API initial commit.">
       <created>1645703319810</created>
@@ -133,7 +136,28 @@
       <option name="project" value="LOCAL" />
       <updated>1646329012508</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added data to fixtures.">
+      <created>1646378179652</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1646378179652</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Implemented additional task.">
+      <created>1646397251631</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1646397251631</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Improved the &quot;user&quot; model in the API.">
+      <created>1646602164372</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1646602164372</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +187,10 @@
     <MESSAGE value="Created API for &quot;track&quot; entity." />
     <MESSAGE value="Created API for &quot;user&quot; entity." />
     <MESSAGE value="Created API for &quot;trackHistory&quot; entity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created API for &quot;trackHistory&quot; entity." />
+    <MESSAGE value="Added data to fixtures." />
+    <MESSAGE value="Implemented additional task." />
+    <MESSAGE value="Improved the &quot;user&quot; model in the API." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved the &quot;user&quot; model in the API." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

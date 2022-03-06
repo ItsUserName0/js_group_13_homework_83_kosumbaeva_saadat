@@ -1,17 +1,39 @@
 const express = require('express');
+const {nanoid} = require('nanoid');
+const multer = require('multer');
+const path = require('path');
+const config = require('../config');
 const User = require('../models/User');
+const mongoose = require("mongoose");
 
 const router = express.Router();
 
-router.post('/', async (req, res, next) => {
+const storage = {
+  destination: (req, file, cb) => {
+    cb(null, config.uploadPath);
+  },
+  filename: (req, file, cb) => {
+    cb(null, nanoid() + path.extname(file.originalname));
+  }
+};
+
+const upload = multer({storage});
+
+router.post('/', upload.single('avatar'), async (req, res, next) => {
   try {
-    if (!req.body.email || !req.body.password) {
-      return res.status(422).send({error: 'Email and password are required!'});
+    if (!req.body.email || !req.body.password || !req.body.displayName) {
+      return res.status(422).send({error: 'Email, password and display name are required!'});
     }
 
     const userData = {
       email: req.body.email,
       password: req.body.password,
+      displayName: req.body.displayName,
+      avatar: null
+    }
+
+    if (req.file) {
+      userData.avatar = req.file.filename;
     }
 
     const user = new User(userData);
@@ -20,6 +42,9 @@ router.post('/', async (req, res, next) => {
 
     return res.send(user);
   } catch (e) {
+    if (e instanceof mongoose.Error.ValidationError) {
+      return res.status(422).send(e);
+    }
     next(e);
   }
 });

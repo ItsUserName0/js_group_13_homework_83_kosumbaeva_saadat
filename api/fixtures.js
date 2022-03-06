@@ -77,16 +77,22 @@ const run = async () => {
     {
       email: 'user1@test.com',
       password: '123',
+      avatar: 'user1.png',
+      displayName: 'John Doe',
       token: nanoid(),
     },
     {
       email: 'user2@test.com',
       password: '123',
+      avatar: 'user2.jpg',
+      displayName: 'Jane Shepard',
       token: nanoid(),
     },
     {
       email: 'user3@test.com',
       password: '123',
+      avatar: 'user3.png',
+      displayName: 'Isaac',
       token: nanoid(),
     },
   );

@@ -58,7 +58,7 @@ router.get('/withArtist/:id', async (req, res, next) => {
 router.post('/', upload.single('image'), async (req, res, next) => {
   try {
     if (!req.body.title || !req.body.artist) {
-      return res.status(400).send({error: 'Title and artist are required!'});
+      return res.status(422).send({error: 'Title and artist are required!'});
     }
     const albumData = {
       title: req.body.title,
@@ -69,7 +69,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
     if (req.body.release) {
       const date = new Date(req.body.release);
       if (isNaN(date.getDate())) {
-        return res.status(400).send({error: 'The date is incorrect!'});
+        return res.status(422).send({error: 'The date is incorrect!'});
       }
       albumData.release = date;
     }

@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', upload.single('image'), async (req, res, next) => {
   try {
     if (!req.body.title) {
-      return res.status(400).send({error: 'Title is required!'});
+      return res.status(422).send({error: 'Title is required!'});
     }
     const artistData = {
       title: req.body.title,

@@ -1,15 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const { nanoid } = require('nanoid');
+const {nanoid} = require('nanoid');
 
 const UserSchema = new Schema({
     email: {
       type: String,
       required: true,
       unique: true,
+      validate: {
+        validator: async value => {
+          const user = await User.findOne({email: value});
+          if (user) return false;
+        },
+        message: 'This user is already registered!',
+      }
     },
     password: {
+      type: String,
+      required: true,
+    },
+    avatar: String,
+    displayName: {
       type: String,
       required: true,
     },
