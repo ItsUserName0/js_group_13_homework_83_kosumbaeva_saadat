@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Improved the &quot;user&quot; model in the API." />
+    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Created basic structure of registration page.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/pages/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/pages/register/register.component.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +12,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -51,6 +55,8 @@
       <workItem from="1646375492623" duration="8424000" />
       <workItem from="1646597307960" duration="4485000" />
       <workItem from="1646602001868" duration="603000" />
+      <workItem from="1646602654781" duration="4574000" />
+      <workItem from="1646640292927" duration="1034000" />
     </task>
     <task id="LOCAL-00001" summary="API initial commit.">
       <created>1645703319810</created>
@@ -157,7 +163,35 @@
       <option name="project" value="LOCAL" />
       <updated>1646602164372</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Improved the &quot;user&quot; model in the API.">
+      <created>1646603345779</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1646603345779</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Improved the &quot;user&quot; model in the API.">
+      <created>1646604371937</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1646604371937</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Improved the &quot;user&quot; model in the API.">
+      <created>1646604659751</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1646604659751</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Created basic structure of registration page.">
+      <created>1646607208564</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1646607208564</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +224,8 @@
     <MESSAGE value="Added data to fixtures." />
     <MESSAGE value="Implemented additional task." />
     <MESSAGE value="Improved the &quot;user&quot; model in the API." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved the &quot;user&quot; model in the API." />
+    <MESSAGE value="Created basic structure of registration page." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created basic structure of registration page." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

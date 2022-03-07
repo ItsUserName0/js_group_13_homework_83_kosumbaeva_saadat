@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Album } from '../../models/album.model';
 import { AppState } from '../../store/types';
-import { fetchAlbumsRequest } from '../../store/artists.actions';
+import { fetchAlbumsRequest } from '../../store/albums.actions';
 
 @Component({
   selector: 'app-albums',
@@ -19,9 +19,9 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   artist = '';
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
-    this.albums = this.store.select(state => state.artists.albums);
-    this.loading = this.store.select(state => state.artists.fetchAlbumsLoading);
-    this.error = this.store.select(state => state.artists.fetchAlbumsError);
+    this.albums = this.store.select(state => state.albums.albums);
+    this.loading = this.store.select(state => state.albums.fetchAlbumsLoading);
+    this.error = this.store.select(state => state.albums.fetchAlbumsError);
   }
 
   ngOnInit(): void {

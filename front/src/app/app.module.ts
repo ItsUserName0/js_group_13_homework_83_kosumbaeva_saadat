@@ -23,6 +23,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FileInputComponent } from './ui/file-input/file-input.component';
 import { MatButtonModule } from '@angular/material/button';
+import { albumsReducer } from './store/albums.reducer';
+import { AlbumsEffects } from './store/albums.effects';
+import { userReducer } from './store/users.reducer';
+import { UsersEffects } from './store/users.effects';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -43,14 +48,16 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     MatToolbarModule,
     MatCardModule,
-    StoreModule.forRoot({artists: artistsReducer}, {}),
-    EffectsModule.forRoot([ArtistsEffects]),
+    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: userReducer}, {}),
+    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects]),
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
