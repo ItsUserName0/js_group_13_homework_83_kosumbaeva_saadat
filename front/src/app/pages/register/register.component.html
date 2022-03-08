@@ -1,8 +1,13 @@
+<mat-progress-spinner *ngIf="loading | async else formArea" mode="indeterminate"></mat-progress-spinner>
+
+<ng-template #formArea></ng-template>
 <div fxLayout="row" fxLayoutAlign="center">
   <mat-card class="register-form">
     <mat-card-title>Register</mat-card-title>
     <mat-card-content>
-      <form #f="ngForm" autocomplete="off" fxLayout="column" (ngSubmit)="onSubmit()">
+      <form #f="ngForm" autocomplete="off" fxLayout="column" (ngSubmit)="onSubmit()"
+            [appIdentical]="['password', 'confirmPassword']"
+      >
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input
@@ -12,28 +17,31 @@
           <mat-error *ngIf="email.touched && email.hasError('required')">Email is required!</mat-error>
           <mat-error *ngIf="email.touched && email.hasError('email')">Enter correct email!</mat-error>
           <mat-error
-            *ngIf="email.touched && email.hasError('serverError')">{{ email.getError('serverError') }}</mat-error>
+            *ngIf="email.touched && email.hasError('emailServerError')">{{ email.getError('emailServerError') }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
           <input
-            type="password" name="password" autocomplete="new-password"
+            type="password" name="password"
             required matInput ngModel #password="ngModel"
           />
           <mat-error *ngIf="password.touched && password.hasError('required')">Password is required!</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Repeat your password</mat-label>
+          <mat-label>Confirm your password</mat-label>
           <input
-            type="password" name="repeatPassword" autocomplete="new-password"
-            required matInput ngModel #repeatPassword="ngModel"
+            type="password" name="confirmPassword"
+            required matInput ngModel #confirmPassword="ngModel"
           />
-          <mat-error *ngIf="repeatPassword.touched && repeatPassword.hasError('required')">Repeat password is
+          <mat-error *ngIf="confirmPassword.touched && confirmPassword.hasError('required')">Password confirmation is
             required!
           </mat-error>
+          <mat-error
+            *ngIf="confirmPassword.touched && confirmPassword.hasError('confirmPasswordServerError')">{{ confirmPassword.getError('confirmPasswordServerError') }}</mat-error>
         </mat-form-field>
+        <small class="mat-error" *ngIf="confirmPassword.touched && f.errors?.['identical']">Passwords should match!</small>
 
         <mat-form-field appearance="outline">
           <mat-label>Display name</mat-label>
@@ -43,6 +51,8 @@
           />
           <mat-error *ngIf="displayName.touched && displayName.hasError('required')">Display name is required!
           </mat-error>
+          <mat-error
+            *ngIf="displayName.touched && displayName.hasError('displayNameServerError')">{{ displayName.getError('displayNameServerError') }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -50,7 +60,8 @@
           <app-file-input name="avatar" ngModel></app-file-input>
         </mat-form-field>
 
-        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">REGISTER</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid || (loading | async)">REGISTER
+        </button>
       </form>
     </mat-card-content>
   </mat-card>

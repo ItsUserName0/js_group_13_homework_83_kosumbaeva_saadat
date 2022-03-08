@@ -21,13 +21,18 @@ const upload = multer({storage});
 
 router.post('/', upload.single('avatar'), async (req, res, next) => {
   try {
-    if (!req.body.email || !req.body.password || !req.body.displayName) {
-      return res.status(422).send({error: 'Email, password and display name are required!'});
+    if (!req.body.email || !req.body.password || !req.body.displayName || !req.body.confirmPassword) {
+      return res.status(422).send({error: 'Email, password, confirm password and display name are required!'});
+    }
+
+    if (req.body.password !== req.body.confirmPassword) {
+      return res.status(422).send({errors: {confirmPassword: {message: 'Incorrect password confirmation!'}}});
     }
 
     const userData = {
       email: req.body.email,
       password: req.body.password,
+      repeatPassword: req.body.repeatPassword,
       displayName: req.body.displayName,
       avatar: null
     }

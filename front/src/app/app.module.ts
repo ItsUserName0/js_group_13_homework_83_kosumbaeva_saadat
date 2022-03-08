@@ -28,6 +28,7 @@ import { AlbumsEffects } from './store/albums.effects';
 import { userReducer } from './store/users.reducer';
 import { UsersEffects } from './store/users.effects';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ValidateIdenticalDirective } from './directives/validate-identical.directive';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AlbumComponent,
     RegisterComponent,
     FileInputComponent,
+    ValidateIdenticalDirective,
   ],
   imports: [
     BrowserModule,

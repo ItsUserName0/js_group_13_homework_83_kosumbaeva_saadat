@@ -21,7 +21,7 @@ export interface FieldError {
 export interface RegisterError {
   errors: {
     email: FieldError,
-    password: FieldError,
+    confirmPassword: FieldError,
     displayName: FieldError,
   }
 }
