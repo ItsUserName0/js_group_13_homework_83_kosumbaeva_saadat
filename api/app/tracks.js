@@ -1,6 +1,8 @@
 const express = require('express');
 const Track = require('../models/Track');
 const Album = require('../models/Album');
+const auth = require("../middleware/auth");
+const permit = require("../middleware/permit");
 
 const router = express.Router();
 
@@ -40,7 +42,7 @@ router.get('/byAlbum/:albumId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', auth, permit('admin'), async (req, res, next) => {
   try {
     if (!req.body.title || !req.body.duration) {
       return res.status(422).send({error: 'Title and duration are required!'});

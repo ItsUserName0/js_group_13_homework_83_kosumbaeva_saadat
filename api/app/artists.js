@@ -4,6 +4,8 @@ const path = require('path');
 const { nanoid } = require('nanoid');
 const config = require('../config');
 const Artist = require('../models/Artist');
+const permit = require("../middleware/permit");
+const auth = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -27,7 +29,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', upload.single('image'), async (req, res, next) => {
+router.post('/', auth, permit('admin'), upload.single('image'), async (req, res, next) => {
   try {
     if (!req.body.title) {
       return res.status(422).send({error: 'Title is required!'});
