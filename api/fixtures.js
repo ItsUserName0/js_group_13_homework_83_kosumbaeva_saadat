@@ -54,25 +54,71 @@ const run = async () => {
     },
   );
 
-  const [OceanEyes, TousLesMemes, Coraline] = await Track.create(
+  await Track.create(
     {
-      title: 'Ocean eyes',
+      title: 'ocean eyes',
       album: DontSmileAtMe,
       duration: '3:20',
-    },
-    {
+    }, {
+      title: 'COPYCAT',
+      album: DontSmileAtMe,
+      duration: '3:18',
+    }, {
+      title: 'watch',
+      album: DontSmileAtMe,
+      duration: '3:19',
+    }, {
+      title: 'hostage',
+      album: DontSmileAtMe,
+      duration: '3:54',
+    }, {
+      title: 'bellyache',
+      album: DontSmileAtMe,
+      duration: '3:31',
+    }, {
       title: 'Tous les memes',
       album: RacineCarree,
       duration: '3:37',
-    },
-    {
+    }, {
+      title: 'Ta fete',
+      album: RacineCarree,
+      duration: '2:56',
+    }, {
+      title: 'batard',
+      album: RacineCarree,
+      duration: '3:29',
+    }, {
+      title: 'moules frites',
+      album: RacineCarree,
+      duration: '2:39',
+    }, {
+      title: 'sommeil',
+      album: RacineCarree,
+      duration: '3:39',
+    }, {
       title: 'Coraline',
       album: TeatroDira,
       duration: '4:58',
+    }, {
+      title: 'Zitti e buoni',
+      album: TeatroDira,
+      duration: '3:30',
+    }, {
+      title: 'Lividi sui gomiti',
+      album: TeatroDira,
+      duration: '2:43',
+    }, {
+      title: 'Vent\'anni',
+      album: TeatroDira,
+      duration: '4:13',
+    }, {
+      title: 'La paura del buio',
+      album: TeatroDira,
+      duration: '3:29',
     },
   );
 
-  const [user, admin] = await User.create(
+  await User.create(
     {
       email: 'user@user',
       password: '123',
