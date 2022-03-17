@@ -5,7 +5,6 @@ const Artist = require('./models/Artist');
 const Album = require('./models/Album');
 const Track = require('./models/Track');
 const User = require('./models/User');
-const TrackHistory = require('./models/TrackHistory');
 
 const run = async () => {
   await mongoose.connect(config.mongo.db, config.mongo.options);
@@ -73,42 +72,22 @@ const run = async () => {
     },
   );
 
-  const [User1, User2, User3] = await User.create(
+  const [user, admin] = await User.create(
     {
-      email: 'user1@test.com',
+      email: 'user1@user',
       password: '123',
       avatar: 'user1.png',
       displayName: 'John Doe',
       token: nanoid(),
+      role: 'user',
     },
     {
-      email: 'user2@test.com',
+      email: 'admin@admin',
       password: '123',
       avatar: 'user2.jpg',
-      displayName: 'Jane Shepard',
+      displayName: 'Admin',
       token: nanoid(),
-    },
-    {
-      email: 'user3@test.com',
-      password: '123',
-      avatar: 'user3.png',
-      displayName: 'Isaac',
-      token: nanoid(),
-    },
-  );
-
-  await TrackHistory.create(
-    {
-      user: User1,
-      track: OceanEyes,
-    },
-    {
-      user: User2,
-      track: TousLesMemes,
-    },
-    {
-      user: User3,
-      track: Coraline,
+      role: 'admin',
     },
   );
 
