@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
+import { logoutUserRequest } from '../../store/users.actions';
 
 @Component({
   selector: 'app-layout',
@@ -17,6 +18,10 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.store.dispatch(logoutUserRequest());
   }
 
 }

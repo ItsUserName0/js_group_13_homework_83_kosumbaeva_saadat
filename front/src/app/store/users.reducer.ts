@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   loginUserFailure,
   loginUserRequest,
-  loginUserSuccess,
+  loginUserSuccess, logoutUser,
   registerUserFailure,
   registerUserRequest,
   registerUserSuccess
@@ -25,4 +25,5 @@ export const userReducer = createReducer(
   on(loginUserRequest, state => ({...state, loginLoading: true, loginError: null})),
   on(loginUserSuccess, (state, {user}) => ({...state, loginLoading: false, user})),
   on(loginUserFailure, (state, {error}) => ({...state, loginLoading: false, loginError: error})),
+  on(logoutUser, state => ({...state, user: null})),
 );
