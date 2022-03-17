@@ -1,35 +1,49 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UsersService } from '../services/users.service';
-import { registerUserFailure, registerUserRequest, registerUserSuccess } from './users.actions';
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import {
+  loginUserFailure,
+  loginUserRequest,
+  loginUserSuccess,
+  registerUserFailure,
+  registerUserRequest,
+  registerUserSuccess
+} from './users.actions';
+import { map, mergeMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HelpersService } from '../services/helpers.service';
 
 @Injectable()
 export class UsersEffects {
+
+  constructor(private actions: Actions,
+              private router: Router,
+              private helpers: HelpersService,
+              private usersService: UsersService,) {
+  }
+
   registerUser = createEffect(() => this.actions.pipe(
     ofType(registerUserRequest),
     mergeMap(({userData}) => this.usersService.registerUser(userData).pipe(
       map(user => registerUserSuccess({user})),
       tap(() => {
-        this.snackBar.open('Registered successful', 'OK', {duration: 3000});
+        this.helpers.openSnackBar('Registered successful');
         void this.router.navigate(['/']);
       }),
-      catchError(reqErr => {
-        let registerError = null;
-        if (reqErr instanceof HttpErrorResponse && reqErr.status === 422) {
-          registerError = reqErr.error;
-        } else {
-          this.snackBar.open('Server error', 'OK', {duration: 3000});
-        }
-        return of(registerUserFailure({error: registerError}));
-      }),
+      this.helpers.catchServerError(registerUserFailure),
     )),
   ));
 
-  constructor(private actions: Actions, private usersService: UsersService, private router: Router, private snackBar: MatSnackBar) {
-  }
+  loginUser = createEffect(() => this.actions.pipe(
+    ofType(loginUserRequest),
+    mergeMap(({userData}) => this.usersService.loginUser(userData).pipe(
+      map(user => loginUserSuccess({user})),
+      tap(() => {
+        this.helpers.openSnackBar('Sign in successful');
+        void this.router.navigate(['/']);
+      }),
+      this.helpers.catchServerError(loginUserFailure),
+    )),
+  ));
 
 }

@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <div class="container toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+    <a routerLink="/">Music</a>
+    <nav *ngIf="!(user| async); else userMenu">
+      <a routerLink="/register">REGISTER</a>
+      <a routerLink="/login">SIGN IN</a>
+    </nav>
+  </div>
+</mat-toolbar>
+
+<ng-template #userMenu>
+  <nav>
+    <span>Hello, <strong>{{ (user | async)?.['displayName'] }}</strong> !</span>&nbsp;
+    <button mat-button class="user-menu-btn">Logout</button>
+  </nav>
+</ng-template>
+
+<div class="container">
+  <ng-content></ng-content>
+</div>

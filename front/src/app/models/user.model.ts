@@ -14,6 +14,11 @@ export interface RegisterUserData {
   avatar: null | File
 }
 
+export interface LoginUserData {
+  email: string,
+  password: string,
+}
+
 export interface FieldError {
   message: string,
 }
@@ -24,5 +29,9 @@ export interface RegisterError {
     confirmPassword: FieldError,
     displayName: FieldError,
   }
+}
+
+export interface LoginError {
+  error: string,
 }
 

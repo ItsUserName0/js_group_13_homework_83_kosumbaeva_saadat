@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegisterUserData, User } from '../models/user.model';
+import { LoginUserData, RegisterUserData, User } from '../models/user.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class UsersService {
     });
 
     return this.http.post<User>(environment.apiUrl + '/users', formData);
+  }
+
+  loginUser(userData: LoginUserData) {
+    return this.http.post<User>(environment.apiUrl + '/users/sessions', userData);
   }
 
 }
