@@ -27,6 +27,8 @@ import { CenteredCardComponent } from './ui/centered-card/centered-card.componen
 import { LayoutComponent } from './ui/layout/layout.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { TracksComponent } from './pages/tracks/tracks.component';
+import { TrackComponent } from './ui/track/track.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     CenteredCardComponent,
     LayoutComponent,
+    TracksComponent,
+    TrackComponent,
   ],
   imports: [
     BrowserModule,

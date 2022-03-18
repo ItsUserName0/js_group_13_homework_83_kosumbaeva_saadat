@@ -1,7 +1,9 @@
-<mat-card>
-  <mat-card-content fxLayout="column">
-    <img [src]="apiUrl + '/uploads/' + album.image" [alt]="album.title" *ngIf="album.image"/>
-    <mat-card-title>{{ album.title }}</mat-card-title>
-    <p *ngIf="album.release"><strong>Release: </strong>{{ album.release.getFullYear() }}</p>
-  </mat-card-content>
-</mat-card>
+<a [routerLink]="['/tracks', album.id]">
+  <mat-card>
+    <mat-card-content fxLayout="column">
+      <img [src]="apiUrl + '/uploads/' + album.image" [alt]="album.title" *ngIf="album.image"/>
+      <mat-card-title>{{ album.title }}</mat-card-title>
+      <p *ngIf="album.release"><strong>Release: </strong>{{ album.release.getFullYear() }}</p>
+    </mat-card-content>
+  </mat-card>
+</a>

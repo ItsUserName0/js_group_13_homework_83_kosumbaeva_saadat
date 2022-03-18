@@ -4,10 +4,12 @@ import { ArtistsComponent } from './pages/artists/artists.component';
 import { AlbumsComponent } from './pages/albums/albums.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
+import { TracksComponent } from './pages/tracks/tracks.component';
 
 const routes: Routes = [
   {path: '', component: ArtistsComponent},
   {path: 'artist/albums/:id', component: AlbumsComponent},
+  {path: 'tracks/:id', component: TracksComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
 ];
