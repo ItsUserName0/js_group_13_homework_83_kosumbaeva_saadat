@@ -12,7 +12,8 @@ const TrackHistorySchema = new Schema({
     },
     datetime: {
       type: Date,
-      default: Date.now(),
+      required: true,
+      default: Date.now,
     },
   },
   {versionKey: false}

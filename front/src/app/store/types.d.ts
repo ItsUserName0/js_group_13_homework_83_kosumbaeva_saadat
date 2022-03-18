@@ -28,9 +28,14 @@ export type TracksState = {
   fetchLoading: boolean,
 }
 
+export type TrackHistoryState = {
+  addLoading: boolean,
+}
+
 export type AppState = {
   artists: ArtistsState,
   albums: AlbumsState,
   users: UsersState,
   tracks: TracksState,
+  trackHistory: TrackHistoryState
 };
