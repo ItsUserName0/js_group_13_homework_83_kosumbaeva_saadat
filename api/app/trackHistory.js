@@ -4,6 +4,15 @@ const TrackHistory = require('../models/TrackHistory');
 
 const router = express.Router();
 
+router.get('/', auth, async (req, res, next) => {
+  try {
+    const tracks = await TrackHistory.find({user: req.user._id}, null, {sort: {'_id': -1}}).populate('track', 'title');
+    return res.send(tracks);
+  } catch (e) {
+    next(e);
+  }
+})
+
 router.post('/', auth, async (req, res, next) => {
   try {
     if (!req.body.track) {

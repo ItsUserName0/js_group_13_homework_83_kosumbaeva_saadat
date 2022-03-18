@@ -12,6 +12,7 @@
   <nav>
     <span>Hello, <strong>{{ (user | async)?.['displayName'] }}</strong> !</span>&nbsp;
     <button mat-button class="user-menu-btn" (click)="logout()">Logout</button>
+    <a routerLink="/track_history" mat-button>Track History</a>
   </nav>
 </ng-template>
 

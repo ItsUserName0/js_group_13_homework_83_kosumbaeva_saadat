@@ -2,6 +2,7 @@ import { Artist } from '../models/artist.model';
 import { Album } from '../models/album.model';
 import { LoginError, RegisterError, User } from '../models/user.model';
 import { Track } from '../models/track.model';
+import { TrackHistory } from '../models/track-history.model';
 
 export type ArtistsState = {
   artists: Artist[],
@@ -29,6 +30,8 @@ export type TracksState = {
 }
 
 export type TrackHistoryState = {
+  tracks: TrackHistory[],
+  fetchLoading: boolean,
   addLoading: boolean,
 }
 

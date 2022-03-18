@@ -1,7 +1,7 @@
 export interface TrackHistory {
   _id: string,
   user: string,
-  track: string,
+  track: {_id: string, title: string},
   datetime: Date,
 }
 

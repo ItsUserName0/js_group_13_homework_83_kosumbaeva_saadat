@@ -5,13 +5,15 @@ import { AlbumsComponent } from './pages/albums/albums.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { TracksComponent } from './pages/tracks/tracks.component';
+import { TrackHistoryComponent } from './pages/track-history/track-history.component';
 
 const routes: Routes = [
   {path: '', component: ArtistsComponent},
-  {path: 'artist/albums/:id', component: AlbumsComponent},
-  {path: 'tracks/:id', component: TracksComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'artist/albums/:id', component: AlbumsComponent},
+  {path: 'tracks/:id', component: TracksComponent},
+  {path: 'track_history', component: TrackHistoryComponent},
 ];
 
 @NgModule({

@@ -29,6 +29,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { TracksComponent } from './pages/tracks/tracks.component';
 import { TrackComponent } from './ui/track/track.component';
+import { TrackHistoryComponent } from './pages/track-history/track-history.component';
+import { TrackHistoryItemComponent } from './ui/track-history-item/track-history-item.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { TrackComponent } from './ui/track/track.component';
     LayoutComponent,
     TracksComponent,
     TrackComponent,
+    TrackHistoryComponent,
+    TrackHistoryItemComponent,
   ],
   imports: [
     BrowserModule,

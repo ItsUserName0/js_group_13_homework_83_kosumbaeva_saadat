@@ -5,10 +5,12 @@ const TrackHistorySchema = new Schema({
     user: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: 'User',
     },
     track: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: 'Track',
     },
     datetime: {
       type: Date,

@@ -1,0 +1,7 @@
+<mat-spinner *ngIf="loading | async; else tracksArea"></mat-spinner>
+
+<ng-template #tracksArea>
+  <app-track-history-item *ngFor="let t of tracks | async" [track]="t"></app-track-history-item>
+</ng-template>
+
+
