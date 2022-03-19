@@ -1,17 +1,29 @@
 const express = require('express');
 const auth = require('../middleware/auth');
 const TrackHistory = require('../models/TrackHistory');
+const Track = require('../models/Track');
+const Album = require('../models/Album');
 
 const router = express.Router();
 
 router.get('/', auth, async (req, res, next) => {
   try {
-    const tracks = await TrackHistory.find({user: req.user._id}, null, {sort: {'_id': -1}}).populate('track', 'title');
-    return res.send(tracks);
+    const trackHistory = await TrackHistory.find({user: req.user._id}, null, {sort: {'_id': -1}}).populate('track', 'title');
+    const arr = [];
+    for (let i = 0; i < trackHistory.length; i++) {
+      const [track] = await Track.find({_id: trackHistory[i]['track']._id}).populate('album');
+      const [album] = await Album.find({_id: track['album']._id}).populate('artist', 'title');
+      const data = {
+        trackHistory: trackHistory[i],
+        artist: album['artist'].title,
+      };
+      arr.push(data);
+    }
+    return res.send(arr);
   } catch (e) {
     next(e);
   }
-})
+});
 
 router.post('/', auth, async (req, res, next) => {
   try {

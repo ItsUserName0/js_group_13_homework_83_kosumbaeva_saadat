@@ -15,7 +15,7 @@ export class TrackHistoryItemComponent implements OnInit {
   }
 
   getDate() {
-    const date = new Date(this.track.datetime);
+    const date = new Date(this.track.trackHistory.datetime);
     return date.toLocaleString();
   }
 

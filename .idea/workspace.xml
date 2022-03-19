@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Added validation for user registration.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/trackHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/trackHistory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/public/uploads/user3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/models/track-history.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/models/track-history.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/ui/track-history-item/track-history-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/ui/track-history-item/track-history-item.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/ui/track-history-item/track-history-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/ui/track-history-item/track-history-item.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +70,7 @@
       <workItem from="1647020473317" duration="3615000" />
       <workItem from="1647028706959" duration="190000" />
       <workItem from="1647034489604" duration="2106000" />
+      <workItem from="1647668375709" duration="10000000" />
     </task>
     <task id="LOCAL-00001" summary="API initial commit.">
       <created>1645703319810</created>
