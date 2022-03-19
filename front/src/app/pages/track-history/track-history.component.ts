@@ -33,6 +33,7 @@ export class TrackHistoryComponent implements OnInit, OnDestroy {
       void this.router.navigate(['/login']);
     }
     this.store.dispatch(fetchTrackHistoryRequest());
+    this.tracks.subscribe(t => console.log(t));
   }
 
   ngOnDestroy(): void {
