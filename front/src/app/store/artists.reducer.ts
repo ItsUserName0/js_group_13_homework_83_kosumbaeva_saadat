@@ -5,16 +5,11 @@ import { fetchArtistsFailure, fetchArtistsRequest, fetchArtistsSuccess } from '.
 const initialState: ArtistsState = {
   artists: [],
   fetchArtistLoading: false,
-  fetchArtistError: null,
 }
 
 export const artistsReducer = createReducer(
   initialState,
-  on(fetchArtistsRequest, state => ({...state, fetchArtistLoading: true, fetchArtistError: null})),
-  on(fetchArtistsSuccess, (state, {artists}) => {
-    return {...state, fetchArtistLoading: false, artists};
-  }),
-  on(fetchArtistsFailure, (state, {error}) => {
-    return {...state, fetchArtistLoading: false, fetchArtistError: error};
-  }),
+  on(fetchArtistsRequest, state => ({...state, fetchArtistLoading: true})),
+  on(fetchArtistsSuccess, (state, {artists}) => ({...state, fetchArtistLoading: false, artists})),
+  on(fetchArtistsFailure, state => ({...state, fetchArtistLoading: false})),
 );

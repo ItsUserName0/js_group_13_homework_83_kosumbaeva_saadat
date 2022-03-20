@@ -1,7 +1,3 @@
-<div class="error" *ngIf="error | async">
-  {{ error | async }}
-</div>
-
 <mat-progress-spinner *ngIf="loading | async else artistsArea" mode="indeterminate"></mat-progress-spinner>
 
 <ng-template #artistsArea>

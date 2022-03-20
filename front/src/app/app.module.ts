@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ArtistsComponent } from './pages/artists/artists.component';
 import { AlbumsComponent } from './pages/albums/albums.component';
@@ -31,6 +31,8 @@ import { TracksComponent } from './pages/tracks/tracks.component';
 import { TrackComponent } from './ui/track/track.component';
 import { TrackHistoryComponent } from './pages/track-history/track-history.component';
 import { TrackHistoryItemComponent } from './ui/track-history-item/track-history-item.component';
+import { AuthInterceptor } from './auth.interceptor';
+import { UserTypeDirective } from './directives/user-type.directive';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { TrackHistoryItemComponent } from './ui/track-history-item/track-history
     TrackComponent,
     TrackHistoryComponent,
     TrackHistoryItemComponent,
+    UserTypeDirective,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,9 @@ import { TrackHistoryItemComponent } from './ui/track-history-item/track-history
     MatMenuModule,
     MatIconModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

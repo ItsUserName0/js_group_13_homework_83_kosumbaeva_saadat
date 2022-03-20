@@ -7,13 +7,11 @@ import { TrackHistory } from '../models/track-history.model';
 export type ArtistsState = {
   artists: Artist[],
   fetchArtistLoading: boolean,
-  fetchArtistError: null | string,
 };
 
 export type AlbumsState = {
   albums: Album[],
   fetchAlbumsLoading: boolean,
-  fetchAlbumsError: null | string,
 }
 
 export type UsersState = {

@@ -4,6 +4,7 @@ export interface User {
   displayName: string,
   avatar: null | string,
   token: string,
+  role: string,
 }
 
 export interface RegisterUserData {

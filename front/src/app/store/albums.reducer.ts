@@ -5,16 +5,11 @@ import { fetchAlbumsFailure, fetchAlbumsRequest, fetchAlbumsSuccess } from './al
 const initialState: AlbumsState = {
   albums: [],
   fetchAlbumsLoading: false,
-  fetchAlbumsError: null,
 };
 
 export const albumsReducer = createReducer(
   initialState,
-  on(fetchAlbumsRequest, state => ({...state, fetchAlbumsLoading: true, fetchAlbumsError: null})),
-  on(fetchAlbumsSuccess, (state, {albums}) => {
-    return {...state, fetchAlbumsLoading: false, albums};
-  }),
-  on(fetchAlbumsFailure, (state, {error}) => {
-    return {...state, fetchAlbumsLoading: false, fetchAlbumsError: error};
-  }),
+  on(fetchAlbumsRequest, state => ({...state, fetchAlbumsLoading: true})),
+  on(fetchAlbumsSuccess, (state, {albums}) => ({...state, fetchAlbumsLoading: false, albums})),
+  on(fetchAlbumsFailure, state => ({...state, fetchAlbumsLoading: false})),
 );

@@ -13,12 +13,10 @@ import { fetchArtistsRequest } from '../../store/artists.actions';
 export class ArtistsComponent implements OnInit {
   artists: Observable<Artist[]>;
   loading: Observable<boolean>;
-  error: Observable<null | string>;
 
   constructor(private store: Store<AppState>) {
     this.artists = this.store.select(state => state.artists.artists);
     this.loading = this.store.select(state => state.artists.fetchArtistLoading);
-    this.error = this.store.select(state => state.artists.fetchArtistError);
   }
 
   ngOnInit(): void {

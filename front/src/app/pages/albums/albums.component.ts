@@ -14,14 +14,12 @@ import { fetchAlbumsRequest } from '../../store/albums.actions';
 export class AlbumsComponent implements OnInit, OnDestroy {
   albums: Observable<Album[]>;
   loading: Observable<boolean>
-  error: Observable<null | string>;
   artistChangeSubscription!: Subscription;
   artist = '';
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.albums = this.store.select(state => state.albums.albums);
     this.loading = this.store.select(state => state.albums.fetchAlbumsLoading);
-    this.error = this.store.select(state => state.albums.fetchAlbumsError);
   }
 
   ngOnInit(): void {

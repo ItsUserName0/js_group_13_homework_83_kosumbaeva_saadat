@@ -2,10 +2,6 @@
   <h1>{{ artist }}</h1>
 </div>
 
-<div class="error" *ngIf="error | async">
-  {{ error | async }}
-</div>
-
 <mat-progress-spinner *ngIf="loading | async else albumsArea"></mat-progress-spinner>
 
 <ng-template #albumsArea>

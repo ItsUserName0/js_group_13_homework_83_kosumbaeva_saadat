@@ -11,8 +11,3 @@ export interface TrackHistory {
 export interface TrackOfTrackHistory {
   track: string,
 }
-
-export interface TrackHistoryData {
-  track: string,
-  token: string,
-}
