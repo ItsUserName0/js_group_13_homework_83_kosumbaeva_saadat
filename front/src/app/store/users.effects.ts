@@ -57,7 +57,7 @@ export class UsersEffects {
       return this.usersService.logout().pipe(
         map(() => logoutUser()),
         tap(() => {
-          void this.router.navigate(['/']);
+          void this.router.navigate(['/login']);
           this.helpers.openSnackBar('Logout successful');
         })
       );

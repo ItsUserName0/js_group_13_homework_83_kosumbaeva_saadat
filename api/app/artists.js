@@ -1,13 +1,16 @@
 const express = require('express');
 const {artists} = require('../multer');
-const Artist = require('../models/Artist');
 const auth = require("../middleware/auth");
+const roles = require('../middleware/roles');
+const published = require('../shared/functions');
+const Artist = require('../models/Artist');
+const mongoose = require("mongoose");
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', roles, async (req, res, next) => {
   try {
-    const artists = await Artist.find();
+    const artists = await published(req.user.role, Artist);
     return res.send(artists);
   } catch (e) {
     next(e);
@@ -16,7 +19,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', auth, artists.single('image'), async (req, res, next) => {
   try {
-    console.log(req.body);
     if (!req.body.title) {
       return res.status(422).send({error: 'Title is required!'});
     }
@@ -33,6 +35,9 @@ router.post('/', auth, artists.single('image'), async (req, res, next) => {
 
     return res.send({message: 'Created artist', id: artist._id});
   } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      return res.status(422).send(error);
+    }
     next(error);
   }
 });

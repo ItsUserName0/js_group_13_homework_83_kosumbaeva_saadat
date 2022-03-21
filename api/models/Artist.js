@@ -6,6 +6,14 @@ const ArtistSchema = new Schema({
       type: String,
       required: true,
       unique: true,
+      validate: {
+        validator: async function (value) {
+          if (!this.isModified('title')) return true;
+          const artist = await Artist.findOne({title: value});
+          return !artist;
+        },
+        message: 'This artist is already exists!',
+      }
     },
     image: String,
     description: String,

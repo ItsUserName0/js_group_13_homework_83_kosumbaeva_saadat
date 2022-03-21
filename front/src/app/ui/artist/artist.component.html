@@ -1,6 +1,9 @@
-<a [routerLink]="['artist', 'albums', artist._id]">
-  <mat-card>
+<a [routerLink]="['artist', 'albums', artist._id]" *ngIf="artist">
+  <mat-card class="card">
     <mat-card-content fxLayout="column">
+      <div class="unpublished" *ngIf="!artist.is_published">
+        <span class="unpublished-text">Unpublished</span>
+      </div>
       <img [src]="artist.image | image" [alt]="artist.title"/>
       <mat-card-title>{{ artist.title }}</mat-card-title>
     </mat-card-content>
