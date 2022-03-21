@@ -2,7 +2,7 @@
   <h1>{{ artist }}</h1>
 </div>
 
-<mat-progress-spinner *ngIf="loading | async else albumsArea"></mat-progress-spinner>
+<mat-spinner *ngIf="loading | async else albumsArea"></mat-spinner>
 
 <ng-template #albumsArea>
   <div class="wrap" fxLayout="row wrap">

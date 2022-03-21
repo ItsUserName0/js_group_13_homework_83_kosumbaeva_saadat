@@ -13,6 +13,11 @@ const AlbumData = new Schema({
     },
     release: Date,
     image: String,
+    is_published: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   {versionKey: false}
 );

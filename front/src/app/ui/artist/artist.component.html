@@ -1,7 +1,7 @@
-<a [routerLink]="['artist', 'albums', artist.id]">
+<a [routerLink]="['artist', 'albums', artist._id]">
   <mat-card>
     <mat-card-content fxLayout="column">
-      <img [src]="apiUrl + '/uploads/' + artist.image" [alt]="artist.title"/>
+      <img [src]="artist.image | image" [alt]="artist.title"/>
       <mat-card-title>{{ artist.title }}</mat-card-title>
     </mat-card-content>
   </mat-card>

@@ -1,2 +1,6 @@
-<app-track *ngFor="let t of (tracks | async); let i = index" [track]="t" [index]="i"></app-track>
+<mat-spinner *ngIf="loading | async; else tracksArea"></mat-spinner>
+
+<ng-template #tracksArea>
+  <app-track *ngFor="let t of (tracks | async); let i = index" [track]="t" [index]="i"></app-track>
+</ng-template>
 

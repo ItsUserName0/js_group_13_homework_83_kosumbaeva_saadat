@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { TracksComponent } from './pages/tracks/tracks.component';
 import { TrackHistoryComponent } from './pages/track-history/track-history.component';
 import { UserTypeService } from './services/user-type.service';
+import { EditArtistComponent } from './pages/edit-artist/edit-artist.component';
 
 const routes: Routes = [
   {path: '', component: ArtistsComponent},
@@ -17,6 +18,12 @@ const routes: Routes = [
   {
     path: 'track_history',
     component: TrackHistoryComponent,
+    canActivate: [UserTypeService],
+    data: {userType: ['user']},
+  },
+  {
+    path: 'artists/new',
+    component: EditArtistComponent,
     canActivate: [UserTypeService],
     data: {userType: ['user']},
   },

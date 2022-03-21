@@ -3,7 +3,7 @@
     <span>{{ index + 1 }}</span>
     <span>{{ track.title }}</span>
     <span class="text-muted">({{ track.duration }})</span>
-    <button mat-raised-button (click)="addtrackToHistory(track._id)">
+    <button mat-raised-button (click)="addtrackToHistory()">
       <mat-spinner diameter="35" *ngIf="(loading | async) && track._id === addingTrackId"></mat-spinner>
       <span *ngIf="!(loading | async) || track._id !== addingTrackId">Play</span>
     </button>

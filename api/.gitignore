@@ -1,12 +1,4 @@
 .idea
 node_modules
-public/uploads/*
-!public/uploads/.gitkeep
-!public/uploads/user1.png
-!public/uploads/user2.jpg
-!public/uploads/billie.jpg
-!public/uploads/stromae.jpg
-!public/uploads/maneskin.jpeg
-!public/uploads/billie_album.jpg
-!public/uploads/maneskin_album.jpg
-!public/uploads/stromae_album.jpg
+public/*
+!public/fixtures/*

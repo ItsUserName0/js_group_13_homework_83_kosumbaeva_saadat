@@ -1,4 +1,4 @@
-<mat-progress-spinner *ngIf="loading | async else artistsArea" mode="indeterminate"></mat-progress-spinner>
+<mat-spinner *ngIf="loading | async else artistsArea"></mat-spinner>
 
 <ng-template #artistsArea>
   <div fxLayout="row wrap" class="wrap">

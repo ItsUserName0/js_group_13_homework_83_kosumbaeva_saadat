@@ -16,4 +16,9 @@ export class AlbumComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDate() {
+    const date = new Date(this.album.release);
+    return date.getFullYear();
+  }
+
 }

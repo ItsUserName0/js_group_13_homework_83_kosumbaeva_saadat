@@ -1,11 +1,8 @@
-export class Album {
-  constructor(public id: string, public title: string, public artist: { title: string }, public release: Date, public image: string) { }
-}
-
-export interface ApiAlbumData {
+export interface Album {
   _id: string,
   title: string,
   artist: {title: string},
-  release: string,
+  release: Date,
   image: string,
+  is_published: boolean,
 }

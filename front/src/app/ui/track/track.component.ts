@@ -14,6 +14,7 @@ import { Observable, Subscription } from 'rxjs';
 export class TrackComponent implements OnInit {
   @Input() track!: Track;
   @Input() index!: number;
+
   loading: Observable<boolean>;
   loadingSub!: Subscription;
   isAdding = false;
@@ -32,8 +33,8 @@ export class TrackComponent implements OnInit {
     });
   }
 
-  addtrackToHistory(id: string) {
-    this.addingTrackId = id;
+  addtrackToHistory() {
+    this.addingTrackId = this.track._id;
     const trackHistoryData: TrackOfTrackHistory = {
       track: this.track._id,
     };

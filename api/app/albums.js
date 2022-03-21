@@ -1,25 +1,10 @@
 const express = require('express');
-const multer = require('multer');
-const {nanoid} = require('nanoid');
-const path = require('path');
-const config = require('../config');
+const {albums} = require('../multer');
 const Album = require('../models/Album');
 const Artist = require('../models/Artist');
 const auth = require("../middleware/auth");
-const permit = require("../middleware/permit");
 
 const router = express.Router();
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, config.uploadPath);
-  },
-  filename: (req, file, cb) => {
-    cb(null, nanoid() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({storage});
 
 router.get('/', async (req, res, next) => {
   try {
@@ -27,6 +12,7 @@ router.get('/', async (req, res, next) => {
       const albums = await Album.find({artist: req.query.artist}).populate("artist", "title");
       return res.send(albums);
     }
+
     const albums = await Album.find();
     return res.send(albums);
   } catch (e) {
@@ -47,27 +33,32 @@ router.get('/withArtist/:id', async (req, res, next) => {
   try {
     const [artist] = await Artist.find({_id: req.params.id});
     const albums = await Album.find({artist: req.params.id});
+
     const albumsWithArtist = [{
       artist: artist,
       albums: albums,
     }];
+
     res.send(albumsWithArtist);
   } catch (e) {
     next(e);
   }
 });
 
-router.post('/', auth, permit('admin'), upload.single('image'), async (req, res, next) => {
+router.post('/', auth, albums.single('image'), async (req, res, next) => {
   try {
     if (!req.body.title || !req.body.artist) {
       return res.status(422).send({error: 'Title and artist are required!'});
     }
+
     const albumData = {
       title: req.body.title,
       artist: req.body.artist,
       release: null,
-      image: null,
+      image: req.file ? req.file.filename : null,
+      is_published: req.user.role === 'admin',
     };
+
     if (req.body.release) {
       const date = new Date(req.body.release);
       if (isNaN(date.getDate())) {
@@ -75,9 +66,7 @@ router.post('/', auth, permit('admin'), upload.single('image'), async (req, res,
       }
       albumData.release = date;
     }
-    if (req.file) {
-      albumData.image = req.file.filename;
-    }
+
     const album = new Album(albumData);
     await album.save();
 

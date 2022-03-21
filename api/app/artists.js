@@ -1,24 +1,9 @@
 const express = require('express');
-const multer = require('multer');
-const path = require('path');
-const { nanoid } = require('nanoid');
-const config = require('../config');
+const {artists} = require('../multer');
 const Artist = require('../models/Artist');
-const permit = require("../middleware/permit");
 const auth = require("../middleware/auth");
 
 const router = express.Router();
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, config.uploadPath);
-  },
-  filename: (req, file, cb) => {
-    cb(null, nanoid() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({storage});
 
 router.get('/', async (req, res, next) => {
   try {
@@ -29,25 +14,26 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', auth, permit('admin'), upload.single('image'), async (req, res, next) => {
+router.post('/', auth, artists.single('image'), async (req, res, next) => {
   try {
+    console.log(req.body);
     if (!req.body.title) {
       return res.status(422).send({error: 'Title is required!'});
     }
+
     const artistData = {
       title: req.body.title,
       description: req.body.description,
-      image: null,
+      image: req.file ? req.file.filename : null,
+      is_published: req.user.role === 'admin',
     };
-    if (req.file) {
-      artistData.image = req.file.filename;
-    }
+
     const artist = new Artist(artistData);
     await artist.save();
 
     return res.send({message: 'Created artist', id: artist._id});
-  } catch (e) {
-    next(e);
+  } catch (error) {
+    next(error);
   }
 });
 

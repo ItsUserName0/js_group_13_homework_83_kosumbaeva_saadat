@@ -33,6 +33,8 @@ import { TrackHistoryComponent } from './pages/track-history/track-history.compo
 import { TrackHistoryItemComponent } from './ui/track-history-item/track-history-item.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { UserTypeDirective } from './directives/user-type.directive';
+import { ImagePipe } from './pipes/image.pipe';
+import { EditArtistComponent } from './pages/edit-artist/edit-artist.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { UserTypeDirective } from './directives/user-type.directive';
     TrackHistoryComponent,
     TrackHistoryItemComponent,
     UserTypeDirective,
+    ImagePipe,
+    EditArtistComponent,
   ],
   imports: [
     BrowserModule,

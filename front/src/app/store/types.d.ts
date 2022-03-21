@@ -7,6 +7,7 @@ import { TrackHistory } from '../models/track-history.model';
 export type ArtistsState = {
   artists: Artist[],
   fetchArtistLoading: boolean,
+  createLoading: boolean,
 };
 
 export type AlbumsState = {

@@ -3,4 +3,5 @@ export interface Track {
   title: string,
   duration: string,
   album?: string,
+  is_published: boolean,
 }

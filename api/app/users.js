@@ -1,25 +1,11 @@
 const express = require('express');
-const {nanoid} = require('nanoid');
-const multer = require('multer');
-const path = require('path');
 const mongoose = require("mongoose");
-const config = require('../config');
+const {avatar} = require('../multer');
 const User = require('../models/User');
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, config.uploadPath);
-  },
-  filename: (req, file, cb) => {
-    cb(null, nanoid() + path.extname(file.originalname));
-  }
-});
-
-const upload = multer({storage});
-
-router.post('/', upload.single('avatar'), async (req, res, next) => {
+router.post('/', avatar.single('avatar'), async (req, res, next) => {
   try {
     if (!req.body.email || !req.body.password || !req.body.displayName) {
       return res.status(422).send({error: 'Email, password, and display name are required!'});
@@ -30,11 +16,7 @@ router.post('/', upload.single('avatar'), async (req, res, next) => {
       password: req.body.password,
       repeatPassword: req.body.repeatPassword,
       displayName: req.body.displayName,
-      avatar: null
-    }
-
-    if (req.file) {
-      userData.avatar = req.file.filename;
+      avatar: req.file ? req.file.filename : null,
     }
 
     const user = new User(userData);
