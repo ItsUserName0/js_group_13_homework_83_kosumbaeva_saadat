@@ -35,6 +35,8 @@ import { AuthInterceptor } from './auth.interceptor';
 import { UserTypeDirective } from './directives/user-type.directive';
 import { ImagePipe } from './pipes/image.pipe';
 import { EditArtistComponent } from './pages/edit-artist/edit-artist.component';
+import { EditAlbumComponent } from './pages/edit-album/edit-album.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { EditArtistComponent } from './pages/edit-artist/edit-artist.component';
     UserTypeDirective,
     ImagePipe,
     EditArtistComponent,
+    EditAlbumComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ import { EditArtistComponent } from './pages/edit-artist/edit-artist.component';
     AppStoreModule,
     MatMenuModule,
     MatIconModule,
+    MatSelectModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

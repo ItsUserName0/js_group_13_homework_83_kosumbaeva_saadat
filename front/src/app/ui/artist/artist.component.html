@@ -1,4 +1,4 @@
-<a [routerLink]="['artist', 'albums', artist._id]" *ngIf="artist">
+<a [routerLink]="['artist', 'albums', artist._id]">
   <mat-card class="card">
     <mat-card-content fxLayout="column">
       <div class="unpublished" *ngIf="!artist.is_published">

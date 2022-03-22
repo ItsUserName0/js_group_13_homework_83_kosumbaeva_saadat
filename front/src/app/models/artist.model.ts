@@ -13,3 +13,9 @@ export interface ArtistData {
   description: null | string,
   image: File | null,
 }
+
+export interface ArtistCreatingError {
+  errors: {
+    title: {message: string},
+  }
+}

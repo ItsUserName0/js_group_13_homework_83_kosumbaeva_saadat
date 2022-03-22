@@ -41,10 +41,7 @@ export class ArtistsEffects {
         return createArtistSuccess();
       }),
       tap(() => this.router.navigate(['/'])),
-      catchError(() => {
-        this.helpers.openSnackBar('Could not create artist');
-        return of(createArtistFailure());
-      })
+      this.helpers.catchServerError(createArtistFailure),
     ))
   ))
 

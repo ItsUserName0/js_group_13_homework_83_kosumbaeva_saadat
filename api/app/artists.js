@@ -2,7 +2,6 @@ const express = require('express');
 const {artists} = require('../multer');
 const auth = require("../middleware/auth");
 const roles = require('../middleware/roles');
-const published = require('../shared/functions');
 const Artist = require('../models/Artist');
 const mongoose = require("mongoose");
 
@@ -10,7 +9,14 @@ const router = express.Router();
 
 router.get('/', roles, async (req, res, next) => {
   try {
-    const artists = await published(req.user.role, Artist);
+    let artists;
+
+    if (req.user && req.user.role === 'admin') {
+      artists = await Artist.find({}, null, {sort: {'_id': -1}});
+    } else {
+      artists = await Artist.find({is_published: true}, null, {sort: {'_id': -1}});
+    }
+
     return res.send(artists);
   } catch (e) {
     next(e);

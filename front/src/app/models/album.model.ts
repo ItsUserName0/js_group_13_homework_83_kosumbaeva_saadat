@@ -6,3 +6,11 @@ export interface Album {
   image: string,
   is_published: boolean,
 }
+
+export interface AlbumData {
+  [key: string]: any,
+
+  title: string,
+  artist: string,
+  image: File | null,
+}

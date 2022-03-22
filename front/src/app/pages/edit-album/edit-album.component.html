@@ -1,15 +1,17 @@
-<app-centered-card title="Add artist">
+<app-centered-card title="Add album">
   <form #f="ngForm" fxLayout="column" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
       <input name="title" required matInput ngModel #title="ngModel"/>
       <mat-error *ngIf="title.touched && title.hasError('required')">Title is required!</mat-error>
-      <mat-error *ngIf="title.touched && title.hasError('titleServerError')">{{ title.getError('titleServerError') }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
-      <input name="description" matInput ngModel/>
+      <mat-label>Artist</mat-label>
+      <mat-select name="artist" required ngModel #artist="ngModel">
+        <mat-option *ngFor="let a of (artists | async)" [value]="a._id">{{ a.title }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="artist.touched && artist.hasError('required')">Artist is required!</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">

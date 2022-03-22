@@ -1,4 +1,4 @@
-import { Artist } from '../models/artist.model';
+import { Artist, ArtistCreatingError } from '../models/artist.model';
 import { Album } from '../models/album.model';
 import { LoginError, RegisterError, User } from '../models/user.model';
 import { Track } from '../models/track.model';
@@ -7,12 +7,14 @@ import { TrackHistory } from '../models/track-history.model';
 export type ArtistsState = {
   artists: Artist[],
   fetchArtistLoading: boolean,
-  createLoading: boolean,
+  creatingLoading: boolean,
+  creatingError: null | ArtistCreatingError,
 };
 
 export type AlbumsState = {
   albums: Album[],
   fetchAlbumsLoading: boolean,
+  creatingLoading: boolean,
 }
 
 export type UsersState = {

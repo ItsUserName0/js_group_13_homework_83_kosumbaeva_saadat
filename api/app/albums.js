@@ -3,36 +3,76 @@ const {albums} = require('../multer');
 const Album = require('../models/Album');
 const Artist = require('../models/Artist');
 const auth = require("../middleware/auth");
+const roles = require("../middleware/roles");
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', roles, async (req, res, next) => {
   try {
-    if (req.query.artist) {
-      const albums = await Album.find({artist: req.query.artist}).populate("artist", "title");
-      return res.send(albums);
+    let albums;
+
+    if (req.user && !req.query.artist) {
+      if (req.user.role === 'user') {
+        albums = await Album.find(
+          {is_published: true},
+          null,
+          {sort: {'_id': -1}});
+      } else {
+        albums = await Album.find({}, null, {sort: {'_id': -1}});
+      }
+    } else if (req.query.artist && !req.user) {
+      albums = await Album.find(
+        {artist: req.query.artist, is_published: true},
+        null,
+        {sort: {'_id': -1}}).populate("artist", "title");
+    } else if (req.user && req.query.artist) {
+      if (req.user.role === 'user') {
+        albums = await Album.find(
+          {artist: req.query.artist, is_published: true},
+          null,
+          {sort: {'_id': -1}}).populate("artist", "title");
+      } else {
+        albums = await Album.find(
+          {artist: req.query.artist},
+          null,
+          {sort: {'_id': -1}}).populate("artist", "title");
+      }
     }
 
-    const albums = await Album.find();
     return res.send(albums);
   } catch (e) {
     next(e);
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', roles, async (req, res, next) => {
   try {
-    const albums = await Album.find({_id: req.params.id}).populate("artist");
+    let albums;
+
+    if (req.user && req.user.role === 'admin') {
+      albums = await Album.find({_id: req.params.id}, null, {sort: {'_id': -1}}).populate("artist");
+    } else {
+      albums = await Album.find({_id: req.params.id, is_published: true}, null, {sort: {'_id': -1}}).populate("artist");
+    }
+
     return res.send(albums);
   } catch (e) {
     next(e);
   }
 });
 
-router.get('/withArtist/:id', async (req, res, next) => {
+router.get('/withArtist/:id', roles, async (req, res, next) => {
   try {
-    const [artist] = await Artist.find({_id: req.params.id});
-    const albums = await Album.find({artist: req.params.id});
+    let artist;
+    let albums;
+
+    if (req.user && req.user.role === 'admin') {
+      [artist] = await Artist.find({_id: req.params.id}, null, {sort: {'_id': -1}});
+      albums = await Album.find({artist: req.params.id});
+    } else {
+      [artist] = await Artist.find({_id: req.params.id, is_published: true}, null, {sort: {'_id': -1}});
+      albums = await Album.find({artist: req.params.id, is_published: true}, null, {sort: {'_id': -1}});
+    }
 
     const albumsWithArtist = [{
       artist: artist,
