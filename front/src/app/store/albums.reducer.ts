@@ -13,6 +13,7 @@ const initialState: AlbumsState = {
   albums: [],
   fetchAlbumsLoading: false,
   creatingLoading: false,
+  creatingError: null,
 };
 
 export const albumsReducer = createReducer(
@@ -20,7 +21,7 @@ export const albumsReducer = createReducer(
   on(fetchAlbumsRequest, state => ({...state, fetchAlbumsLoading: true})),
   on(fetchAlbumsSuccess, (state, {albums}) => ({...state, fetchAlbumsLoading: false, albums})),
   on(fetchAlbumsFailure, state => ({...state, fetchAlbumsLoading: false})),
-  on(createAlbumRequest, state => ({...state, creatingLoading: true})),
+  on(createAlbumRequest, state => ({...state, creatingLoading: true, creatingError: null})),
   on(createAlbumSuccess, state => ({...state, creatingLoading: false})),
-  on(createAlbumFailure, state => ({...state, creatingLoading: false})),
+  on(createAlbumFailure, (state, {error}) => ({...state, creatingLoading: false, creatingError: error})),
 );

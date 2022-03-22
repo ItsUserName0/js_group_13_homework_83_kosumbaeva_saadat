@@ -5,3 +5,9 @@ export interface Track {
   album?: string,
   is_published: boolean,
 }
+
+export interface TrackData {
+  title: string,
+  duration: string,
+  album: null | string,
+}

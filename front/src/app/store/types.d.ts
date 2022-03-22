@@ -15,6 +15,7 @@ export type AlbumsState = {
   albums: Album[],
   fetchAlbumsLoading: boolean,
   creatingLoading: boolean,
+  creatingError: null | string,
 }
 
 export type UsersState = {
@@ -28,6 +29,8 @@ export type UsersState = {
 export type TracksState = {
   tracks: Track[],
   fetchLoading: boolean,
+  creatingLoading: boolean,
+  creatingError: null | string,
 }
 
 export type TrackHistoryState = {

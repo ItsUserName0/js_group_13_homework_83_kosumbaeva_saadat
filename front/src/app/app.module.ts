@@ -37,6 +37,7 @@ import { ImagePipe } from './pipes/image.pipe';
 import { EditArtistComponent } from './pages/edit-artist/edit-artist.component';
 import { EditAlbumComponent } from './pages/edit-album/edit-album.component';
 import { MatSelectModule } from '@angular/material/select';
+import { EditTrackComponent } from './pages/edit-track/edit-track.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MatSelectModule } from '@angular/material/select';
     ImagePipe,
     EditArtistComponent,
     EditAlbumComponent,
+    EditTrackComponent,
   ],
   imports: [
     BrowserModule,

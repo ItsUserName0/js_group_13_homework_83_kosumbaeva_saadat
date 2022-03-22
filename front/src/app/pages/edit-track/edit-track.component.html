@@ -1,0 +1,32 @@
+<app-centered-card title="Add track">
+  <form #f="ngForm" fxLayout="column" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input name="title" required matInput ngModel #title="ngModel"/>
+      <mat-error *ngIf="title.touched && title.hasError('required')">Title is required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Duration</mat-label>
+      <input name="duration" matInput ngModel required #duration="ngModel"/>
+      <mat-error *ngIf="duration.touched && duration.hasError('required')">Duration is required!</mat-error>
+    </mat-form-field>
+
+    <mat-spinner *ngIf="fetchAlbumsLoading | async; else albumsArea" diameter="30"></mat-spinner>
+
+    <ng-template #albumsArea>
+      <mat-form-field appearance="outline">
+        <mat-label>Album</mat-label>
+        <mat-select name="album" ngModel #album="ngModel">
+                  <mat-option *ngFor="let a of (albums | async)" [value]="a._id">{{ a.title }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="album.touched && album.hasError('required')">Artist is required!</mat-error>
+      </mat-form-field>
+    </ng-template>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid || (createTrackLoading | async)">
+      <mat-spinner *ngIf="(createTrackLoading | async)" diameter="30"></mat-spinner>
+      <span *ngIf="!(createTrackLoading | async)">Add</span>
+    </button>
+  </form>
+</app-centered-card>

@@ -40,7 +40,7 @@ export class AlbumsEffects {
       tap(() => this.router.navigate(['/'])),
       catchError(() => {
         this.helpers.openSnackBar('Could not create album');
-          return of(createAlbumFailure());
+        return of(createAlbumFailure({error: 'Wrong data!'}));
       })
     ))
   ));

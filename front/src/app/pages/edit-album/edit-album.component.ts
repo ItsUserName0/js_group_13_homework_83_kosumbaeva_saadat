@@ -16,11 +16,15 @@ export class EditAlbumComponent implements OnInit {
   @ViewChild('f') form!: NgForm;
 
   artists: Observable<Artist[]>;
-  loading: Observable<boolean>;
+  artistsFetchLoading: Observable<boolean>;
+  creatingLoading: Observable<boolean>;
+  creatingError: Observable<null | string>;
 
   constructor(private store: Store<AppState>) {
     this.artists = store.select(state => state.artists.artists);
-    this.loading = store.select(state => state.albums.creatingLoading);
+    this.artistsFetchLoading = store.select(state => state.artists.fetchArtistLoading);
+    this.creatingLoading = store.select(state => state.albums.creatingLoading);
+    this.creatingError = store.select(state => state.albums.creatingError);
   }
 
   ngOnInit(): void {
@@ -28,7 +32,7 @@ export class EditAlbumComponent implements OnInit {
   }
 
   onSubmit() {
-    const albumData = this.form.value;
-    this.store.dispatch(createAlbumRequest({albumData}));
+    this.store.dispatch(createAlbumRequest({albumData: this.form.value}));
   }
+
 }

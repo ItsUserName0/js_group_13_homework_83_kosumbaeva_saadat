@@ -6,8 +6,9 @@
         <mat-icon>add</mat-icon>
       </button>
       <mat-menu #addMenu="matMenu">
-        <a routerLink="/artists/new" mat-menu-item>Artist</a>
-        <a routerLink="/albums/new" mat-menu-item>Album</a>
+        <a routerLink="/artists/create/new" mat-menu-item>Artist</a>
+        <a routerLink="/albums/create/new" mat-menu-item>Album</a>
+        <a routerLink="/tracks/create/new" mat-menu-item>Track</a>
       </mat-menu>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>account_circle</mat-icon>

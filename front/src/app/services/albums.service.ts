@@ -11,8 +11,9 @@ export class AlbumsService {
   constructor(private http: HttpClient) {
   }
 
-  fetchAlbums(id: string) {
-    return this.http.get<Album[]>(environment.apiUrl + '/albums' + '/?artist=' + id);
+  fetchAlbums(id?: string) {
+    const url = id? `/albums?artist=${id}` : '/albums';
+    return this.http.get<Album[]>(environment.apiUrl + url);
   }
 
   createAlbum(albumData: AlbumData) {

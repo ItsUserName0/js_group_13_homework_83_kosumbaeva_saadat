@@ -9,6 +9,7 @@ import { TrackHistoryComponent } from './pages/track-history/track-history.compo
 import { UserTypeService } from './services/user-type.service';
 import { EditArtistComponent } from './pages/edit-artist/edit-artist.component';
 import { EditAlbumComponent } from './pages/edit-album/edit-album.component';
+import { EditTrackComponent } from './pages/edit-track/edit-track.component';
 
 const routes: Routes = [
   {path: '', component: ArtistsComponent},
@@ -23,13 +24,18 @@ const routes: Routes = [
     data: {userType: ['user']},
   },
   {
-    path: 'artists/new',
+    path: 'artists/create/new',
     component: EditArtistComponent,
     canActivate: [UserTypeService],
     data: {userType: ['user']},
   },{
-    path: 'albums/new',
+    path: 'albums/create/new',
     component: EditAlbumComponent,
+    canActivate: [UserTypeService],
+    data: {userType: ['user']},
+  },{
+    path: 'tracks/create/new',
+    component: EditTrackComponent,
     canActivate: [UserTypeService],
     data: {userType: ['user']},
   },
