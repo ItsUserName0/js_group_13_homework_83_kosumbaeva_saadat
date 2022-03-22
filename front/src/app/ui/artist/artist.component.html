@@ -1,5 +1,5 @@
-<a [routerLink]="['artist', 'albums', artist._id]">
-  <mat-card class="card">
+<mat-card class="card">
+  <a [routerLink]="['artist', 'albums', artist._id]">
     <mat-card-content fxLayout="column">
       <div class="unpublished" *ngIf="!artist.is_published">
         <span class="unpublished-text">Unpublished</span>
@@ -7,6 +7,7 @@
       <img [src]="artist.image | image" [alt]="artist.title"/>
       <mat-card-title>{{ artist.title }}</mat-card-title>
     </mat-card-content>
-  </mat-card>
-</a>
+  </a>
+  <button mat-raised-button color="warn" *appHasRoles="['admin']">Delete</button>
+</mat-card>
 

@@ -3,6 +3,7 @@ const Track = require('../models/Track');
 const Album = require('../models/Album');
 const auth = require("../middleware/auth");
 const roles = require("../middleware/roles");
+const permit = require("../middleware/permit");
 
 const router = express.Router();
 
@@ -89,6 +90,15 @@ router.post('/', auth, async (req, res, next) => {
     await track.save();
 
     return res.send({message: 'Created new track!', id: track._id});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
+  try {
+    await Track.findByIdAndDelete(req.params.id);
+    return res.send({message: 'Deleted'});
   } catch (e) {
     next(e);
   }

@@ -8,23 +8,26 @@ import {
   createTrackSuccess,
   fetchTracksFailure,
   fetchTracksRequest,
-  fetchTracksSuccess
+  fetchTracksSuccess, removeTrackFailure, removeTrackRequest, removeTrackSuccess
 } from './tracks.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from './types';
 
 @Injectable()
 export class TracksEffects {
 
   constructor(private actions: Actions,
               private router: Router,
+              private store: Store<AppState>,
               private tracksService: TracksService,
               private helpers: HelpersService) {
   }
 
   fetchTracks = createEffect(() => this.actions.pipe(
     ofType(fetchTracksRequest),
-    mergeMap(({id}) => this.tracksService.getTracks(id).pipe(
+    mergeMap(({albumId}) => this.tracksService.getTracks(albumId).pipe(
       map(tracks => fetchTracksSuccess({tracks})),
       catchError(() => {
         this.helpers.openSnackBar('Could not fetch tracks');
@@ -44,4 +47,14 @@ export class TracksEffects {
       }),
     ))
   ));
+
+  removeTrack = createEffect(() => this.actions.pipe(
+    ofType(removeTrackRequest),
+    mergeMap(({deletingId, albumId}) => this.tracksService.removeTrack(deletingId).pipe(
+      map(() => removeTrackSuccess()),
+      tap(() => this.store.dispatch(fetchTracksRequest({albumId}))),
+      this.helpers.catchServerError(removeTrackFailure),
+    ))
+  ));
+
 }

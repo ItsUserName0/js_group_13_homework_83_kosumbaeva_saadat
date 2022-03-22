@@ -4,6 +4,7 @@ const Album = require('../models/Album');
 const Artist = require('../models/Artist');
 const auth = require("../middleware/auth");
 const roles = require("../middleware/roles");
+const permit = require("../middleware/permit");
 
 const router = express.Router();
 
@@ -111,6 +112,14 @@ router.post('/', auth, albums.single('image'), async (req, res, next) => {
     await album.save();
 
     return res.send({message: 'Created album', id: album._id});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.delete('/', auth, permit(['admin']), async (req, res, next) => {
+  try {
+
   } catch (e) {
     next(e);
   }

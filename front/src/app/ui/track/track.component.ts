@@ -5,6 +5,8 @@ import { AppState } from '../../store/types';
 import { addTrackToHistoryRequest } from '../../store/track-history.actions';
 import { TrackOfTrackHistory } from '../../models/track-history.model';
 import { Observable, Subscription } from 'rxjs';
+import { removeTrackRequest } from '../../store/tracks.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-track',
@@ -14,13 +16,14 @@ import { Observable, Subscription } from 'rxjs';
 export class TrackComponent implements OnInit {
   @Input() track!: Track;
   @Input() index!: number;
+  album!: string;
 
   loading: Observable<boolean>;
   loadingSub!: Subscription;
   isAdding = false;
   addingTrackId = '';
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.loading = store.select(state => state.trackHistory.addLoading);
   }
 
@@ -31,6 +34,9 @@ export class TrackComponent implements OnInit {
         this.addingTrackId = '';
       }
     });
+    this.route.params.subscribe(params => {
+      this.album = <string>params['id'];
+    })
   }
 
   addtrackToHistory() {
@@ -41,4 +47,7 @@ export class TrackComponent implements OnInit {
     this.store.dispatch(addTrackToHistoryRequest({trackHistoryData}));
   }
 
+  removeTrack() {
+    this.store.dispatch(removeTrackRequest({deletingId: this.track._id, albumId: this.album}));
+  }
 }

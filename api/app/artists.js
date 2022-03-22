@@ -4,6 +4,7 @@ const auth = require("../middleware/auth");
 const roles = require('../middleware/roles');
 const Artist = require('../models/Artist');
 const mongoose = require("mongoose");
+const permit = require("../middleware/permit");
 
 const router = express.Router();
 
@@ -45,6 +46,14 @@ router.post('/', auth, artists.single('image'), async (req, res, next) => {
       return res.status(422).send(error);
     }
     next(error);
+  }
+});
+
+router.delete('/', auth, permit(['admin']), async (req, res, next) => {
+  try {
+
+  } catch (e) {
+    next(e);
   }
 });
 

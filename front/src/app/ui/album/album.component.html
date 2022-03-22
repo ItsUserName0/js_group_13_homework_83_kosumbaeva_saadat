@@ -1,5 +1,5 @@
-<a [routerLink]="['/tracks', album._id]">
-  <mat-card>
+<mat-card>
+  <a [routerLink]="['/tracks', album._id]">
     <mat-card-content fxLayout="column">
       <div class="unpublished" *ngIf="!album.is_published">
         <span class="unpublished-text">Unpublished</span>
@@ -8,5 +8,6 @@
       <mat-card-title>{{ album.title }}</mat-card-title>
       <p *ngIf="album.release"><strong>Release: </strong>{{ getDate() }}</p>
     </mat-card-content>
-  </mat-card>
-</a>
+  </a>
+  <button mat-raised-button color="warn" *appHasRoles="['admin']">Delete</button>
+</mat-card>

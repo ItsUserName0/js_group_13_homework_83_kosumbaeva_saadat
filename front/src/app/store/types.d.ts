@@ -31,6 +31,7 @@ export type TracksState = {
   fetchLoading: boolean,
   creatingLoading: boolean,
   creatingError: null | string,
+  removingLoading: boolean,
 }
 
 export type TrackHistoryState = {

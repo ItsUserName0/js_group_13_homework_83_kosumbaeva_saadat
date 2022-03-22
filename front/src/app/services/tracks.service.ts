@@ -20,4 +20,8 @@ export class TracksService {
     return this.http.post(environment.apiUrl + '/tracks', trackData);
   }
 
+  removeTrack(id: string) {
+    return this.http.delete(environment.apiUrl + '/tracks/' + id);
+  }
+
 }

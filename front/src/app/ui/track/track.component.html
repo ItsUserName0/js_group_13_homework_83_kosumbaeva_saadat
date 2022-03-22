@@ -8,5 +8,6 @@
       <span *ngIf="!(loading | async) || track._id !== addingTrackId">Play</span>
     </button>
     <mat-icon color="warn" *ngIf="!track.is_published">unpublished</mat-icon>
+    <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeTrack()">Delete</button>
   </mat-card-content>
 </mat-card>

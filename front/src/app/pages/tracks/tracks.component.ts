@@ -22,8 +22,8 @@ export class TracksComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const id = <string>params['id'];
-      this.store.dispatch(fetchTracksRequest({id}));
+      const albumId = <string>params['id'];
+      this.store.dispatch(fetchTracksRequest({albumId}));
     })
   }
 
