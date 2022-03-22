@@ -9,5 +9,8 @@
       <p *ngIf="album.release"><strong>Release: </strong>{{ getDate() }}</p>
     </mat-card-content>
   </a>
-  <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeAlbum()">Delete</button>
+  <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeAlbum()">
+    <mat-spinner *ngIf="(removingLoading | async) && album._id === toBeDeletedAlbum" diameter="30"></mat-spinner>
+    <span *ngIf="!(removingLoading | async) || album._id !== toBeDeletedAlbum">Delete</span>
+  </button>
 </mat-card>

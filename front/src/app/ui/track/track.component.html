@@ -8,6 +8,9 @@
       <span *ngIf="!(loading | async) || track._id !== addingTrackId">Play</span>
     </button>
     <mat-icon color="warn" *ngIf="!track.is_published">unpublished</mat-icon>
-    <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeTrack()">Delete</button>
+    <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeTrack()">
+      <mat-spinner *ngIf="(removingLoading | async) && track._id === toBeDeletedTrackId" diameter="30"></mat-spinner>
+      <span *ngIf="!(removingLoading | async) || track._id !== toBeDeletedTrackId">Delete</span>
+    </button>
   </mat-card-content>
 </mat-card>

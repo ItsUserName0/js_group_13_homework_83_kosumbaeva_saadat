@@ -22,9 +22,12 @@ export class TrackComponent implements OnInit {
   loadingSub!: Subscription;
   isAdding = false;
   addingTrackId = '';
+  removingLoading: Observable<boolean>;
+  toBeDeletedTrackId = '';
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.loading = store.select(state => state.trackHistory.addLoading);
+    this.removingLoading = store.select(state => state.tracks.removingLoading);
   }
 
   ngOnInit(): void {
@@ -48,6 +51,7 @@ export class TrackComponent implements OnInit {
   }
 
   removeTrack() {
+    this.toBeDeletedTrackId = this.track._id;
     this.store.dispatch(removeTrackRequest({deletingId: this.track._id, albumId: this.album}));
   }
 }

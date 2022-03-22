@@ -35,13 +35,13 @@ const run = async () => {
       is_published: true,
     },{
       title: 'Lana Del Rey',
-      image: 'fixtures/lana.webp',
-      description: 'Description',
+      image: 'fixtures/lana.jpg',
+      description: 'Elizabeth Woolridge Grant (Eng. Elizabeth Woolridge Grant; born June 21, 1985, New York), better known as Lana Del Rey (Eng. Lana Del Rey ) is an American singer.',
       is_published: false,
     },
   );
 
-  const [DontSmileAtMe, RacineCarree, TeatroDira, DieForMe] = await Album.create(
+  const [DontSmileAtMe, RacineCarree, TeatroDira, Chemtrails] = await Album.create(
     {
       artist: Billie,
       title: 'Dont smile at me',
@@ -64,7 +64,7 @@ const run = async () => {
       is_published: true,
     },{
       artist: Lana,
-      title: 'Die for me',
+      title: 'Chemtrails Over The Country Club',
       release: '2021',
       image: 'fixtures/lana_album.jpg',
       is_published: false,
@@ -148,14 +148,14 @@ const run = async () => {
       duration: '3:29',
       is_published: true,
     },{
-      title: 'track1',
-      album: DieForMe,
-      duration: '4:13',
+      title: 'White Dress',
+      album: Chemtrails,
+      duration: '5:34',
       is_published: false,
     }, {
-      title: 'track2',
-      album: DieForMe,
-      duration: '3:29',
+      title: 'Wild At Heart',
+      album: Chemtrails,
+      duration: '4:07',
       is_published: false,
     },
   );
