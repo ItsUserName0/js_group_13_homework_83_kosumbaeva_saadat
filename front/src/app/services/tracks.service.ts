@@ -24,4 +24,8 @@ export class TracksService {
     return this.http.delete(environment.apiUrl + '/tracks/' + id);
   }
 
+  publishTrack(id: string) {
+    return this.http.post(`${environment.apiUrl}/tracks/${id}/publish`, {});
+  }
+
 }

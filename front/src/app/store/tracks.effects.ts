@@ -8,7 +8,12 @@ import {
   createTrackSuccess,
   fetchTracksFailure,
   fetchTracksRequest,
-  fetchTracksSuccess, removeTrackFailure, removeTrackRequest, removeTrackSuccess
+  fetchTracksSuccess, publishTrackFailure,
+  publishTrackRequest,
+  publishTrackSuccess,
+  removeTrackFailure,
+  removeTrackRequest,
+  removeTrackSuccess
 } from './tracks.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
@@ -56,6 +61,18 @@ export class TracksEffects {
       catchError(() => {
         this.helpers.openSnackBar('Could not delete track');
         return of(removeTrackFailure());
+      })
+    ))
+  ));
+
+  publishTrack = createEffect(() => this.actions.pipe(
+    ofType(publishTrackRequest),
+    mergeMap(({trackId, albumId}) => this.tracksService.publishTrack(trackId).pipe(
+      map(() => publishTrackSuccess()),
+      tap(() => this.store.dispatch(fetchTracksRequest({albumId}))),
+      catchError(() => {
+        this.helpers.openSnackBar('Could not publish track');
+        return of(publishTrackFailure());
       })
     ))
   ));

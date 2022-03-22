@@ -12,3 +12,7 @@ export const createTrackFailure = createAction('[Tracks] Create Failure', props<
 export const removeTrackRequest = createAction('[Tracks] Remove Request', props<{ deletingId: string, albumId: string }>());
 export const removeTrackSuccess = createAction('[Tracks] Remove Success');
 export const removeTrackFailure = createAction('[Tracks] Remove Failure');
+
+export const publishTrackRequest = createAction('[Track] Publish Request', props<{ trackId: string, albumId: string }>());
+export const publishTrackSuccess = createAction('[Track] Publish Success');
+export const publishTrackFailure = createAction('[Track] Publish Failure');

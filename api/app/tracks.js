@@ -95,6 +95,15 @@ router.post('/', auth, async (req, res, next) => {
   }
 });
 
+router.post('/:id/publish', auth, permit('admin'), async (req, res, next) => {
+  try {
+    await Track.updateOne({_id: req.params.id}, {is_published: true});
+    return res.send({message: 'Updated successful'});
+  } catch (e) {
+    next(e);
+  }
+});
+
 router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
   try {
     await Track.findByIdAndDelete(req.params.id);

@@ -34,6 +34,7 @@ export type TracksState = {
   creatingLoading: boolean,
   creatingError: null | string,
   removingLoading: boolean,
+  publishLoading: boolean,
 }
 
 export type TrackHistoryState = {

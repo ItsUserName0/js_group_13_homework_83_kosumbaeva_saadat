@@ -51,13 +51,22 @@ router.post('/', auth, artists.single('image'), async (req, res, next) => {
   }
 });
 
+router.post('/:id/publish', auth, permit('admin'), async (req, res, next) => {
+  try {
+    await Artist.updateOne({_id: req.params.id}, {is_published: true});
+    return res.send({message: 'Updated successful'});
+  } catch (e) {
+    next(e);
+  }
+});
+
 router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
   try {
     await Artist.findByIdAndDelete(req.params.id);
     const albums = await Album.find({artist: req.params.id});
     await Track.deleteMany({album: albums});
     await Album.deleteMany({artist: req.params.id});
-    
+
     return res.send({message: 'Deleted'});
   } catch (e) {
     next(e);
