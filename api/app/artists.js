@@ -49,9 +49,10 @@ router.post('/', auth, artists.single('image'), async (req, res, next) => {
   }
 });
 
-router.delete('/', auth, permit(['admin']), async (req, res, next) => {
+router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
   try {
-
+    await Artist.findByIdAndDelete(req.params.id);
+    return res.send({message: 'Deleted'});
   } catch (e) {
     next(e);
   }

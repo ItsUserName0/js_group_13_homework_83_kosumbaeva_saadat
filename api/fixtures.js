@@ -15,7 +15,7 @@ const run = async () => {
     await mongoose.connection.db.dropCollection(coll.name);
   }
 
-  const [Billie, Stromae, Maneskin] = await Artist.create(
+  const [Billie, Stromae, Maneskin, Lana] = await Artist.create(
     {
       title: 'Billie',
       image: 'fixtures/billie.jpg',
@@ -33,10 +33,15 @@ const run = async () => {
       image: 'fixtures/maneskin.jpeg',
       description: 'Måneskin (Italian: [ˈmɔːneskin], Danish for \'moonlight\') is an Italian rock band formed in Rome in 2016. The band is composed of vocalist Damiano David, bassist Victoria De Angelis, guitarist Thomas Raggi, and drummer Ethan Torchio.',
       is_published: true,
+    },{
+      title: 'Lana Del Rey',
+      image: 'fixtures/lana.webp',
+      description: 'Description',
+      is_published: false,
     },
   );
 
-  const [DontSmileAtMe, RacineCarree, TeatroDira] = await Album.create(
+  const [DontSmileAtMe, RacineCarree, TeatroDira, DieForMe] = await Album.create(
     {
       artist: Billie,
       title: 'Dont smile at me',
@@ -57,6 +62,12 @@ const run = async () => {
       release: '2021',
       image: 'fixtures/maneskin_album.jpg',
       is_published: true,
+    },{
+      artist: Lana,
+      title: 'Die for me',
+      release: '2021',
+      image: 'fixtures/lana_album.jpg',
+      is_published: false,
     },
   );
 
@@ -136,6 +147,16 @@ const run = async () => {
       album: TeatroDira,
       duration: '3:29',
       is_published: true,
+    },{
+      title: 'track1',
+      album: DieForMe,
+      duration: '4:13',
+      is_published: false,
+    }, {
+      title: 'track2',
+      album: DieForMe,
+      duration: '3:29',
+      is_published: false,
     },
   );
 

@@ -117,9 +117,10 @@ router.post('/', auth, albums.single('image'), async (req, res, next) => {
   }
 });
 
-router.delete('/', auth, permit(['admin']), async (req, res, next) => {
+router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
   try {
-
+    await Album.findByIdAndDelete(req.params.id);
+    return res.send({message: 'Deleted'});
   } catch (e) {
     next(e);
   }

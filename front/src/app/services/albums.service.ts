@@ -28,4 +28,8 @@ export class AlbumsService {
     return this.http.post(environment.apiUrl + '/albums', formData);
   }
 
+  removeAlbum(id: string) {
+    return this.http.delete(environment.apiUrl + '/albums/' + id);
+  }
+
 }

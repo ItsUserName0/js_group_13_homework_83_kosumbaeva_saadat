@@ -9,5 +9,5 @@
       <p *ngIf="album.release"><strong>Release: </strong>{{ getDate() }}</p>
     </mat-card-content>
   </a>
-  <button mat-raised-button color="warn" *appHasRoles="['admin']">Delete</button>
+  <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeAlbum()">Delete</button>
 </mat-card>

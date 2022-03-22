@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Album } from '../../models/album.model';
 import { environment } from '../../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-album',
@@ -10,10 +11,14 @@ import { environment } from '../../../environments/environment';
 export class AlbumComponent implements OnInit {
   @Input() album!: Album;
   apiUrl = environment.apiUrl;
+  artistId!: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.artistId = <string>params['id'];
+    });
   }
 
   getDate() {
@@ -21,4 +26,7 @@ export class AlbumComponent implements OnInit {
     return date.getFullYear();
   }
 
+  removeAlbum() {
+
+  }
 }
