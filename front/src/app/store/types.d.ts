@@ -9,6 +9,7 @@ export type ArtistsState = {
   fetchArtistLoading: boolean,
   creatingLoading: boolean,
   creatingError: null | ArtistCreatingError,
+  removingLoading: boolean,
 };
 
 export type AlbumsState = {

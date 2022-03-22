@@ -53,7 +53,10 @@ export class AlbumsEffects {
     mergeMap(({albumId, artistId}) => this.albumsService.removeAlbum(albumId).pipe(
       map(() => removeAlbumSuccess()),
       tap(() => this.store.dispatch(fetchAlbumsRequest({id: artistId}))),
-      this.helpers.catchServerError(removeAlbumFailure),
+      catchError(() => {
+        this.helpers.openSnackBar('Could not delete album');
+        return of(removeAlbumFailure());
+      }),
     )),
   ));
 

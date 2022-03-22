@@ -53,7 +53,10 @@ export class TracksEffects {
     mergeMap(({deletingId, albumId}) => this.tracksService.removeTrack(deletingId).pipe(
       map(() => removeTrackSuccess()),
       tap(() => this.store.dispatch(fetchTracksRequest({albumId}))),
-      this.helpers.catchServerError(removeTrackFailure),
+      catchError(() => {
+        this.helpers.openSnackBar('Could not delete track');
+        return of(removeTrackFailure());
+      })
     ))
   ));
 

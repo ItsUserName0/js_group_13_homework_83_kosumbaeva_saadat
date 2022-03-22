@@ -7,17 +7,23 @@ import {
   createArtistSuccess,
   fetchArtistsFailure,
   fetchArtistsRequest,
-  fetchArtistsSuccess
+  fetchArtistsSuccess,
+  removeArtistFailure,
+  removeArtistRequest,
+  removeArtistSuccess
 } from './artists.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { HelpersService } from '../services/helpers.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from './types';
 
 @Injectable()
 export class ArtistsEffects {
 
   constructor(private actions: Actions,
               private router: Router,
+              private store: Store<AppState>,
               private helpers: HelpersService,
               private artistsService: ArtistsService) {
   }
@@ -44,5 +50,17 @@ export class ArtistsEffects {
       this.helpers.catchServerError(createArtistFailure),
     ))
   ))
+
+  removeArtist = createEffect(() => this.actions.pipe(
+    ofType(removeArtistRequest),
+    mergeMap(({artistId}) => this.artistsService.removeArtist(artistId).pipe(
+      map(() => removeArtistSuccess()),
+      tap(() => this.store.dispatch(fetchArtistsRequest())),
+      catchError(() => {
+        this.helpers.openSnackBar('Could not delete artist');
+        return of(removeArtistFailure());
+      })
+    ))
+  ));
 
 }

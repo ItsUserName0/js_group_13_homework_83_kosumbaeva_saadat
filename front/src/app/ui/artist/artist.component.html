@@ -8,6 +8,9 @@
       <mat-card-title>{{ artist.title }}</mat-card-title>
     </mat-card-content>
   </a>
-  <button mat-raised-button color="warn" *appHasRoles="['admin']">Delete</button>
+  <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeArtist()">
+    <mat-spinner *ngIf="(removingLoading | async) && artist._id === toBeDeletedArtist" diameter="30"></mat-spinner>
+    <span *ngIf="!(removingLoading | async) || artist._id !== toBeDeletedArtist">Delete</span>
+  </button>
 </mat-card>
 
