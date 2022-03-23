@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Added fixtures.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/albums.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/albums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/fixtures.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/fixtures.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/app/store/albums.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/store/albums.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/app/store/albums.effects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/store/albums.effects.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/app/store/albums.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/store/albums.reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/app/store/types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/store/types.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/app/ui/album/album.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/ui/album/album.component.ts" afterDir="false" />
+    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Implemented publish of track.">
+      <change beforePath="$PROJECT_DIR$/front/src/app/services/albums.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/services/albums.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +37,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.18.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.18.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/public/fixtures" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../todo-list" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/front/node_modules/typescript/lib" />
@@ -90,7 +83,7 @@
       <workItem from="1647790934329" duration="1342000" />
       <workItem from="1647862205674" duration="14184000" />
       <workItem from="1647927659687" duration="29248000" />
-      <workItem from="1647966975312" duration="2111000" />
+      <workItem from="1647966975312" duration="8678000" />
     </task>
     <task id="LOCAL-00001" summary="API initial commit.">
       <created>1645703319810</created>
@@ -309,7 +302,28 @@
       <option name="project" value="LOCAL" />
       <updated>1647954097963</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Implemented deleting of album.">
+      <created>1647971665343</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1647971665343</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Implemented deleting of artist.">
+      <created>1647973528845</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1647973528845</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Implemented publish of track.">
+      <created>1647977133026</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1647977133026</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,9 +341,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Frontend initial commit." />
-    <MESSAGE value="Created basic app structure." />
-    <MESSAGE value="Implemented the display of the list of artists." />
     <MESSAGE value="Implemented the display of the list of albums." />
     <MESSAGE value="Added fixture data." />
     <MESSAGE value="Implemented an additional task." />
@@ -352,7 +363,10 @@
     <MESSAGE value="Implemented the creation of a track." />
     <MESSAGE value="Implemented deleting of track." />
     <MESSAGE value="Added fixtures." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added fixtures." />
+    <MESSAGE value="Implemented deleting of album." />
+    <MESSAGE value="Implemented deleting of artist." />
+    <MESSAGE value="Implemented publish of track." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented publish of track." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

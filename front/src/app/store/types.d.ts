@@ -17,7 +17,8 @@ export type AlbumsState = {
   fetchAlbumsLoading: boolean,
   creatingLoading: boolean,
   creatingError: null | string,
-  removingLoading: boolean
+  removingLoading: boolean,
+  publishLoading: boolean,
 }
 
 export type UsersState = {

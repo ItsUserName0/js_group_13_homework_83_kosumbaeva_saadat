@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Album } from '../../models/album.model';
-import { environment } from '../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
-import { removeAlbumRequest } from '../../store/albums.actions';
-import { Observable } from 'rxjs';
+import { publishAlbumRequest, removeAlbumRequest } from '../../store/albums.actions';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-album',
@@ -15,18 +14,27 @@ import { Observable } from 'rxjs';
 export class AlbumComponent implements OnInit {
   @Input() album!: Album;
 
-  apiUrl = environment.apiUrl;
   artistId!: string;
   toBeDeletedAlbum!: string;
   removingLoading: Observable<boolean>;
+  publishLoading: Observable<boolean>;
+  publishSub!: Subscription;
+  toBePublishAlbumId = '';
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {
     this.removingLoading = store.select(state => state.albums.removingLoading);
+    this.publishLoading = store.select(state => state.albums.publishLoading);
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.artistId = <string>params['id'];
+    });
+
+    this.publishSub = this.publishLoading.subscribe(isPublish => {
+      if (!isPublish) {
+        this.toBePublishAlbumId = '';
+      }
     });
   }
 
@@ -38,5 +46,10 @@ export class AlbumComponent implements OnInit {
   removeAlbum() {
     this.toBeDeletedAlbum = this.album._id;
     this.store.dispatch(removeAlbumRequest({albumId: this.album._id, artistId: this.artistId}));
+  }
+
+  publishAlbum() {
+    this.toBePublishAlbumId = this.album._id;
+    this.store.dispatch(publishAlbumRequest({albumId: this.album._id, artistId: this.artistId}));
   }
 }

@@ -9,8 +9,16 @@
       <p *ngIf="album.release"><strong>Release: </strong>{{ getDate() }}</p>
     </mat-card-content>
   </a>
-  <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeAlbum()">
-    <mat-spinner *ngIf="(removingLoading | async) && album._id === toBeDeletedAlbum" diameter="30"></mat-spinner>
-    <span *ngIf="!(removingLoading | async) || album._id !== toBeDeletedAlbum">Delete</span>
-  </button>
+
+  <div *appHasRoles="['admin']">
+    <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeAlbum()">
+      <mat-spinner *ngIf="(removingLoading | async) && album._id === toBeDeletedAlbum" diameter="30"></mat-spinner>
+      <span *ngIf="!(removingLoading | async) || album._id !== toBeDeletedAlbum">Delete</span>
+    </button>&nbsp;
+
+    <button mat-raised-button color="accent" (click)="publishAlbum()" *ngIf="!album.is_published">
+      <mat-spinner diameter="35" *ngIf="(publishLoading | async) && album._id === toBePublishAlbumId"></mat-spinner>
+      <span *ngIf="!(publishLoading | async) || album._id !== toBePublishAlbumId">Publish</span>
+    </button>
+  </div>
 </mat-card>

@@ -15,7 +15,7 @@
         <span *ngIf="!(removingLoading | async) || track._id !== toBeDeletedTrackId">Delete</span>
       </button>&nbsp;
 
-      <button mat-raised-button color="primary" (click)="publishTrack()">
+      <button mat-raised-button color="accent" (click)="publishTrack()" *ngIf="!track.is_published">
         <mat-spinner diameter="35" *ngIf="(publishLoading | async) && track._id === toBePublishTrackId"></mat-spinner>
         <span *ngIf="!(publishLoading | async) || track._id !== toBePublishTrackId">Publish</span>
       </button>

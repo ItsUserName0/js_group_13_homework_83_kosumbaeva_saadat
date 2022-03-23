@@ -6,7 +6,13 @@ import {
   createAlbumSuccess,
   fetchAlbumsFailure,
   fetchAlbumsRequest,
-  fetchAlbumsSuccess, removeAlbumFailure, removeAlbumRequest, removeAlbumSuccess
+  fetchAlbumsSuccess,
+  publishAlbumFailure,
+  publishAlbumRequest,
+  publishAlbumSuccess,
+  removeAlbumFailure,
+  removeAlbumRequest,
+  removeAlbumSuccess
 } from './albums.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { AlbumsService } from '../services/albums.service';
@@ -58,6 +64,18 @@ export class AlbumsEffects {
         return of(removeAlbumFailure());
       }),
     )),
+  ));
+
+  publishAlbum = createEffect(() => this.actions.pipe(
+    ofType(publishAlbumRequest),
+    mergeMap(({albumId, artistId}) => this.albumsService.publishAlbum(albumId).pipe(
+      map(() => publishAlbumSuccess()),
+      tap(() => this.store.dispatch(fetchAlbumsRequest({id: artistId}))),
+      catchError(() => {
+        this.helpers.openSnackBar('Could not publish album');
+        return of(publishAlbumFailure());
+      })
+    ))
   ));
 
 }

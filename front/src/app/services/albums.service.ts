@@ -32,4 +32,8 @@ export class AlbumsService {
     return this.http.delete(environment.apiUrl + '/albums/' + id);
   }
 
+  publishAlbum(id: string) {
+    return this.http.post(`${environment.apiUrl}/albums/${id}/publish`, {});
+  }
+
 }

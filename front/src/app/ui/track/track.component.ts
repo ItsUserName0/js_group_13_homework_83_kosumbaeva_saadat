@@ -20,7 +20,6 @@ export class TrackComponent implements OnInit {
 
   loading: Observable<boolean>;
   loadingSub!: Subscription;
-  isAdding = false;
   addingTrackId = '';
   removingLoading: Observable<boolean>;
   toBeDeletedTrackId = '';
@@ -37,7 +36,6 @@ export class TrackComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingSub = this.loading.subscribe(isAdding => {
-      this.isAdding = isAdding;
       if (!isAdding) {
         this.addingTrackId = '';
       }
