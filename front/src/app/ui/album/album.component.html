@@ -11,13 +11,13 @@
   </a>
 
   <div *appHasRoles="['admin']">
-    <button mat-raised-button color="warn" *appHasRoles="['admin']" (click)="removeAlbum()">
+    <button mat-raised-button color="warn" (click)="removeAlbum()">
       <mat-spinner *ngIf="(removingLoading | async) && album._id === toBeDeletedAlbum" diameter="30"></mat-spinner>
       <span *ngIf="!(removingLoading | async) || album._id !== toBeDeletedAlbum">Delete</span>
     </button>&nbsp;
 
     <button mat-raised-button color="accent" (click)="publishAlbum()" *ngIf="!album.is_published">
-      <mat-spinner diameter="35" *ngIf="(publishLoading | async) && album._id === toBePublishAlbumId"></mat-spinner>
+      <mat-spinner diameter="30" *ngIf="(publishLoading | async) && album._id === toBePublishAlbumId"></mat-spinner>
       <span *ngIf="!(publishLoading | async) || album._id !== toBePublishAlbumId">Publish</span>
     </button>
   </div>

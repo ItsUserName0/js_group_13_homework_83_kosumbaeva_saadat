@@ -10,6 +10,7 @@ export type ArtistsState = {
   creatingLoading: boolean,
   creatingError: null | ArtistCreatingError,
   removingLoading: boolean,
+  publishLoading: boolean,
 };
 
 export type AlbumsState = {

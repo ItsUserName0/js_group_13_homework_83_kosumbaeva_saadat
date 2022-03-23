@@ -8,6 +8,9 @@ import {
   fetchArtistsFailure,
   fetchArtistsRequest,
   fetchArtistsSuccess,
+  publishArtistFailure,
+  publishArtistRequest,
+  publishArtistSuccess,
   removeArtistFailure,
   removeArtistRequest,
   removeArtistSuccess
@@ -59,6 +62,18 @@ export class ArtistsEffects {
       catchError(() => {
         this.helpers.openSnackBar('Could not delete artist');
         return of(removeArtistFailure());
+      })
+    ))
+  ));
+
+  publishArtist = createEffect(() => this.actions.pipe(
+    ofType(publishArtistRequest),
+    mergeMap(({id}) => this.artistsService.publishArtist(id).pipe(
+      map(() => publishArtistSuccess()),
+      tap(() => this.store.dispatch(fetchArtistsRequest())),
+      catchError(() => {
+        this.helpers.openSnackBar('Could not publish artist');
+        return of(publishArtistFailure());
       })
     ))
   ));

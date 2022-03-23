@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Track } from '../../models/track.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
@@ -13,29 +13,31 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.sass']
 })
-export class TrackComponent implements OnInit {
+export class TrackComponent implements OnInit, OnDestroy {
   @Input() track!: Track;
   @Input() index!: number;
   album!: string;
 
-  loading: Observable<boolean>;
-  loadingSub!: Subscription;
+  addingLoading: Observable<boolean>;
+  addingSub!: Subscription;
   addingTrackId = '';
+
   removingLoading: Observable<boolean>;
   toBeDeletedTrackId = '';
+
   publishLoading: Observable<boolean>;
   toBePublishTrackId = '';
   publishSub!: Subscription;
   isPublish = false;
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
-    this.loading = store.select(state => state.trackHistory.addLoading);
+    this.addingLoading = store.select(state => state.trackHistory.addLoading);
     this.removingLoading = store.select(state => state.tracks.removingLoading);
     this.publishLoading = store.select(state => state.tracks.publishLoading);
   }
 
   ngOnInit(): void {
-    this.loadingSub = this.loading.subscribe(isAdding => {
+    this.addingSub = this.addingLoading.subscribe(isAdding => {
       if (!isAdding) {
         this.addingTrackId = '';
       }
@@ -70,4 +72,10 @@ export class TrackComponent implements OnInit {
     this.toBePublishTrackId = this.track._id;
     this.store.dispatch(publishTrackRequest({trackId: this.track._id, albumId: this.album}));
   }
+
+  ngOnDestroy() {
+    this.addingSub.unsubscribe();
+    this.publishSub.unsubscribe();
+  }
+
 }

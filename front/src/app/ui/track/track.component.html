@@ -4,8 +4,8 @@
     <span>{{ track.title }}</span>
     <span class="text-muted">({{ track.duration }})</span>
     <button mat-raised-button (click)="addtrackToHistory()">
-      <mat-spinner diameter="35" *ngIf="(loading | async) && track._id === addingTrackId"></mat-spinner>
-      <span *ngIf="!(loading | async) || track._id !== addingTrackId">Play</span>
+      <mat-spinner diameter="35" *ngIf="(addingLoading | async) && track._id === addingTrackId"></mat-spinner>
+      <span *ngIf="!(addingLoading | async) || track._id !== addingTrackId">Play</span>
     </button>
     <mat-icon color="warn" *ngIf="!track.is_published">unpublished</mat-icon>
 
@@ -16,7 +16,7 @@
       </button>&nbsp;
 
       <button mat-raised-button color="accent" (click)="publishTrack()" *ngIf="!track.is_published">
-        <mat-spinner diameter="35" *ngIf="(publishLoading | async) && track._id === toBePublishTrackId"></mat-spinner>
+        <mat-spinner diameter="30" *ngIf="(publishLoading | async) && track._id === toBePublishTrackId"></mat-spinner>
         <span *ngIf="!(publishLoading | async) || track._id !== toBePublishTrackId">Publish</span>
       </button>
     </div>

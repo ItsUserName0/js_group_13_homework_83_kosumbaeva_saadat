@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Album } from '../../models/album.model';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -11,12 +11,14 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.sass']
 })
-export class AlbumComponent implements OnInit {
+export class AlbumComponent implements OnInit, OnDestroy {
   @Input() album!: Album;
 
   artistId!: string;
-  toBeDeletedAlbum!: string;
+
   removingLoading: Observable<boolean>;
+  toBeDeletedAlbum!: string;
+
   publishLoading: Observable<boolean>;
   publishSub!: Subscription;
   toBePublishAlbumId = '';
@@ -52,4 +54,9 @@ export class AlbumComponent implements OnInit {
     this.toBePublishAlbumId = this.album._id;
     this.store.dispatch(publishAlbumRequest({albumId: this.album._id, artistId: this.artistId}));
   }
+
+  ngOnDestroy(): void {
+    this.publishSub.unsubscribe();
+  }
+
 }
