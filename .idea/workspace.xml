@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Implemented publish of track.">
-      <change beforePath="$PROJECT_DIR$/front/src/app/services/albums.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/services/albums.service.ts" afterDir="false" />
+    <list default="true" id="a4680c02-e1ba-42b0-aa8b-6b9fd7c53a87" name="Changes" comment="Implemented publish of artist.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/api/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +38,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.18.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.18.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../todo-list" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/front/node_modules/typescript/lib" />
@@ -84,6 +85,8 @@
       <workItem from="1647862205674" duration="14184000" />
       <workItem from="1647927659687" duration="29248000" />
       <workItem from="1647966975312" duration="8678000" />
+      <workItem from="1648016662293" duration="4726000" />
+      <workItem from="1648022510752" duration="834000" />
     </task>
     <task id="LOCAL-00001" summary="API initial commit.">
       <created>1645703319810</created>
@@ -323,7 +326,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647977133026</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Implemented publish of album.">
+      <created>1648020299526</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1648020299526</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Implemented publish of artist.">
+      <created>1648021854324</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1648021854324</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,8 +358,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implemented the display of the list of albums." />
-    <MESSAGE value="Added fixture data." />
     <MESSAGE value="Implemented an additional task." />
     <MESSAGE value="Created API for &quot;track&quot; entity." />
     <MESSAGE value="Created API for &quot;user&quot; entity." />
@@ -366,7 +381,9 @@
     <MESSAGE value="Implemented deleting of album." />
     <MESSAGE value="Implemented deleting of artist." />
     <MESSAGE value="Implemented publish of track." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented publish of track." />
+    <MESSAGE value="Implemented publish of album." />
+    <MESSAGE value="Implemented publish of artist." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented publish of artist." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
