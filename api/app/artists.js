@@ -5,6 +5,7 @@ const roles = require('../middleware/roles');
 const Artist = require('../models/Artist');
 const Album = require('../models/Album');
 const Track = require('../models/Track');
+const TrackHistory = require('../models/TrackHistory');
 const mongoose = require("mongoose");
 const permit = require("../middleware/permit");
 
@@ -62,10 +63,13 @@ router.post('/:id/publish', auth, permit('admin'), async (req, res, next) => {
 
 router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
   try {
-    await Artist.findByIdAndDelete(req.params.id);
     const albums = await Album.find({artist: req.params.id});
+    const tracks = await Track.find({album: albums});
+
+    await TrackHistory.deleteMany({track: tracks});
     await Track.deleteMany({album: albums});
     await Album.deleteMany({artist: req.params.id});
+    await Artist.findByIdAndDelete(req.params.id);
 
     return res.send({message: 'Deleted'});
   } catch (e) {

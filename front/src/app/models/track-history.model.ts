@@ -1,11 +1,14 @@
 export interface TrackHistory {
-  artist: string,
-  trackHistory: {
+  _id: string,
+  user: string,
+  track: {
     _id: string,
-    user: string,
-    track: {_id: string, title: string},
-    datetime: Date,
-  }
+    title: string,
+    album: {
+      artist: { title: string }
+    }
+  },
+  datetime: Date,
 }
 
 export interface TrackOfTrackHistory {

@@ -3,6 +3,7 @@ const {albums} = require('../multer');
 const Album = require('../models/Album');
 const Artist = require('../models/Artist');
 const Track = require('../models/Track');
+const TrackHistory = require('../models/TrackHistory');
 const auth = require("../middleware/auth");
 const roles = require("../middleware/roles");
 const permit = require("../middleware/permit");
@@ -129,8 +130,12 @@ router.post('/:id/publish', auth, permit('admin'), async (req, res, next) => {
 
 router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
   try {
-    await Album.findByIdAndDelete(req.params.id);
+    const tracks = await Track.find({album: req.params.id});
+
+    await TrackHistory.deleteMany({track: tracks});
     await Track.deleteMany({album: req.params.id});
+    await Album.findByIdAndDelete(req.params.id);
+
     return res.send({message: 'Deleted'});
   } catch (e) {
     next(e);

@@ -14,9 +14,4 @@ export class TrackHistoryItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getDate() {
-    const date = new Date(this.track.trackHistory.datetime);
-    return date.toLocaleString();
-  }
-
 }

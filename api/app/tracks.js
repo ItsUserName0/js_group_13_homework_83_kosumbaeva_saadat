@@ -1,6 +1,7 @@
 const express = require('express');
 const Track = require('../models/Track');
 const Album = require('../models/Album');
+const TrackHistory = require('../models/TrackHistory');
 const auth = require("../middleware/auth");
 const roles = require("../middleware/roles");
 const permit = require("../middleware/permit");
@@ -42,7 +43,10 @@ router.get('/byAlbum/:albumId', roles, async (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
       albums = await Album.find({_id: req.params.albumId}, null, {sort: {'_id': -1}}).populate('artist');
     } else {
-      albums = await Album.find({_id: req.params.albumId, is_published: true}, null, {sort: {'_id': -1}}).populate('artist');
+      albums = await Album.find({
+        _id: req.params.albumId,
+        is_published: true
+      }, null, {sort: {'_id': -1}}).populate('artist');
     }
 
     if (albums.length === 0) {
@@ -56,7 +60,7 @@ router.get('/byAlbum/:albumId', roles, async (req, res, next) => {
     } else {
       tracks = await Track.find({album: albums, is_published: true}, null, {sort: {'_id': -1}});
     }
-    
+
     const responseData = {
       artist: albums[0].artist,
       album: albums[0],
@@ -106,7 +110,9 @@ router.post('/:id/publish', auth, permit('admin'), async (req, res, next) => {
 
 router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
   try {
+    await TrackHistory.deleteMany({track: req.params.id});
     await Track.findByIdAndDelete(req.params.id);
+
     return res.send({message: 'Deleted'});
   } catch (e) {
     next(e);

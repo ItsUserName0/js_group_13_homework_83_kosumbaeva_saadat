@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-content fxLayout="row" fxLayoutAlign="space-between">
-    <span>{{ track.trackHistory.track.title }}</span>
-    <span>{{ track.artist }}</span>
-    <span class="text-muted">( {{ getDate() }} )</span>
+    <span>{{ track.track.title }}</span>
+    <span>{{ track.track.album.artist.title }}</span>
+    <span class="text-muted">( {{ track.datetime | date:'medium' }} )</span>
   </mat-card-content>
 </mat-card>
