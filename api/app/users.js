@@ -1,5 +1,10 @@
 const express = require('express');
 const mongoose = require("mongoose");
+const axios = require('axios');
+const request = require('request');
+const {nanoid} = require('nanoid');
+const fs = require('fs');
+const config = require('../config');
 const {avatar} = require('../multer');
 const User = require('../models/User');
 
@@ -58,6 +63,58 @@ router.post('/sessions', async (req, res, next) => {
   }
 });
 
+router.post('/facebookLogin', async (req, res, next) => {
+  try {
+    const inputToken = req.body.authToken;
+    const accessToken = config.facebook.appId + '|' + config.facebook.appSecret;
+    const debugTokenUrl = `https://graph.facebook.com/debug_token?input_token=${inputToken}&access_token=${accessToken}`;
+
+    const response = await axios.get(debugTokenUrl);
+
+    if (response.data.data.error) {
+      return res.status(401).send({error: 'Facebook token incorrect'});
+    }
+
+    if (req.body.id !== response.data.data.user_id) {
+      return res.status(401).send({error: 'Wrong User ID'});
+    }
+
+    let user = await User.findOne({facebookId: req.body.id});
+
+    if (!user) {
+      const picUrl = req.body.picUrl;
+
+      request.head(picUrl, async function (err, res, body) {
+        const ext = res.headers['content-type'].split('/')[1];
+
+        const picFileName = nanoid() + '.' + ext;
+
+        await request(picUrl).pipe(fs.createWriteStream('public/avatars/' + picFileName));
+
+        const user = new User({
+          email: req.body.email,
+          password: nanoid(),
+          facebookId: req.body.id,
+          displayName: req.body.name,
+          avatar: picFileName,
+        });
+
+        user.generateToken();
+        await user.save();
+      });
+
+      return res.send(user);
+    } else {
+      user.generateToken();
+      await user.save();
+
+      return res.send(user);
+    }
+  } catch (e) {
+    next(e);
+  }
+})
+
 router.delete('/sessions', async (req, res, next) => {
   try {
     const token = req.get('Authorization');
@@ -76,6 +133,6 @@ router.delete('/sessions', async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-})
+});
 
 module.exports = router;

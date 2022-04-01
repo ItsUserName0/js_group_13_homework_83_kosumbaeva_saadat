@@ -21,6 +21,14 @@ export interface LoginUserData {
   password: string,
 }
 
+export interface FbLoginUserData {
+  authToken: string,
+  id: string,
+  email: string,
+  name: string,
+  picUrl: string,
+}
+
 export interface FieldError {
   message: string,
 }

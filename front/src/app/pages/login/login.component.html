@@ -39,9 +39,21 @@
       type="submit"
       mat-raised-button
       color="primary"
+      style="margin-bottom: 16px"
       [disabled]="f.invalid || (loading | async)"
     >
-      SIGN IN
+      <mat-spinner *ngIf="loading | async"></mat-spinner>
+      <span *ngIf="!(loading | async)">SIGN IN</span>
+    </button>
+
+    <button type="button"
+            mat-raised-button
+            (click)="fbLogin()"
+            [disabled]="fbLoading | async">
+      <img src="assets/icons/fb.svg" alt="facebook logo">
+      &nbsp;&nbsp;
+      <mat-spinner *ngIf="fbLoading | async" style="display: inline" diameter="25"></mat-spinner>
+      <span *ngIf="!(fbLoading | async)">SIGN IN WITH FACEBOOK</span>
     </button>
   </form>
 </app-centered-card>

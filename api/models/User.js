@@ -44,7 +44,8 @@ const UserSchema = new Schema({
       required: true,
       default: 'user',
       enum: ['user', 'admin'],
-    }
+    },
+    facebookId: String,
   },
   {versionKey: false},
 );

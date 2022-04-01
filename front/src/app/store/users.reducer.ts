@@ -1,5 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  fbLoginFailure,
+  fbLoginRequest, fbLoginSuccess,
   loginUserFailure,
   loginUserRequest,
   loginUserSuccess, logoutUser,
@@ -15,6 +17,7 @@ const initialState: UsersState = {
   registerError: null,
   loginLoading: false,
   loginError: null,
+  fbLoginLoading: false,
 };
 
 export const userReducer = createReducer(
@@ -25,5 +28,8 @@ export const userReducer = createReducer(
   on(loginUserRequest, state => ({...state, loginLoading: true, loginError: null})),
   on(loginUserSuccess, (state, {user}) => ({...state, loginLoading: false, user})),
   on(loginUserFailure, (state, {error}) => ({...state, loginLoading: false, loginError: error})),
+  on(fbLoginRequest, state => ({...state, fbLoginLoading: true, loginError: null})),
+  on(fbLoginSuccess, (state, {user}) => ({...state, fbLoginLoading: false, user})),
+  on(fbLoginFailure, (state, {error}) => ({...state, fbLoginLoading: false, loginError: error})),
   on(logoutUser, state => ({...state, user: null})),
 );

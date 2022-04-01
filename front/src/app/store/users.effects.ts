@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UsersService } from '../services/users.service';
 import {
+  fbLoginFailure,
+  fbLoginRequest, fbLoginSuccess,
   loginUserFailure,
   loginUserRequest,
   loginUserSuccess,
@@ -11,7 +13,7 @@ import {
   registerUserRequest,
   registerUserSuccess
 } from './users.actions';
-import { map, mergeMap, tap } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { HelpersService } from '../services/helpers.service';
 import { Store } from '@ngrx/store';
@@ -51,13 +53,27 @@ export class UsersEffects {
     )),
   ));
 
+  fbLoginUser = createEffect(() => this.actions.pipe(
+    ofType(fbLoginRequest),
+    mergeMap(({userData}) => this.usersService.fbLoginUser(userData).pipe(
+      map(user => fbLoginSuccess({user})),
+      tap(() => {
+        this.helpers.openSnackBar('Sign in successful');
+        void this.router.navigate(['/']);
+      }),
+      catchError(error => {
+        return of(fbLoginFailure({error}));
+      }),
+    )),
+  ));
+
   logoutUser = createEffect(() => this.actions.pipe(
     ofType(logoutUserRequest),
     mergeMap(() => {
       return this.usersService.logout().pipe(
         map(() => logoutUser()),
         tap(() => {
-          void this.router.navigate(['/login']);
+          void this.router.navigate(['/']);
           this.helpers.openSnackBar('Logout successful');
         })
       );

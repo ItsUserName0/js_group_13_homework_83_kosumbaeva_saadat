@@ -39,6 +39,20 @@ import { EditAlbumComponent } from './pages/edit-album/edit-album.component';
 import { MatSelectModule } from '@angular/material/select';
 import { EditTrackComponent } from './pages/edit-track/edit-track.component';
 import { HasRolesDirective } from './directives/has-roles.directive.ts.directive';
+import { FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { environment } from '../environments/environment';
+
+const socialConfig: SocialAuthServiceConfig = {
+  autoLogin: false,
+  providers: [
+    {
+      id: FacebookLoginProvider.PROVIDER_ID,
+      provider: new FacebookLoginProvider(environment.fbAppId, {
+        scope: 'email,public_profile',
+      }),
+    }
+  ],
+};
 
 @NgModule({
   declarations: [
@@ -82,9 +96,11 @@ import { HasRolesDirective } from './directives/has-roles.directive.ts.directive
     MatMenuModule,
     MatIconModule,
     MatSelectModule,
+    SocialLoginModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: 'SocialAuthServiceConfig', useValue: socialConfig},
   ],
   bootstrap: [AppComponent]
 })
